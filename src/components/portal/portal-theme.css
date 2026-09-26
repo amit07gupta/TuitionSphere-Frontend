@@ -1,0 +1,126 @@
+.portal-shell[data-portal-theme="light"] { color-scheme: light; }
+
+.portal-shell[data-portal-theme="dark"] {
+  color-scheme: dark;
+  --portal-surface: #202734;
+  --portal-surface-soft: #293342;
+  --portal-border: #3c4b61;
+  --portal-heading: #f4f7fc;
+  --portal-text: #d7e0ec;
+  --portal-muted: #a9b9cd;
+  background: #141c28 !important;
+  color: var(--portal-text) !important;
+}
+
+.portal-shell[data-portal-theme="dark"] > aside,
+.portal-shell[data-portal-theme="dark"] [class~="bg-white"],
+.portal-shell[data-portal-theme="dark"] [class~="bg-white/85"] {
+  background-color: var(--portal-surface) !important;
+  color: var(--portal-text);
+  border-color: var(--portal-border) !important;
+}
+
+.portal-shell[data-portal-theme="dark"] [class*="bg-slate-50"],
+.portal-shell[data-portal-theme="dark"] [class*="bg-slate-100"],
+.portal-shell[data-portal-theme="dark"] [class*="bg-slate-200"] {
+  background-color: var(--portal-surface-soft) !important;
+}
+
+.portal-shell[data-portal-theme="dark"] [class*="text-brand-navy"],
+.portal-shell[data-portal-theme="dark"] [class*="text-slate-900"],
+.portal-shell[data-portal-theme="dark"] [class*="text-slate-800"],
+.portal-shell[data-portal-theme="dark"] [class*="text-slate-700"] {
+  color: var(--portal-heading) !important;
+}
+
+.portal-shell[data-portal-theme="dark"] [class*="text-slate-600"],
+.portal-shell[data-portal-theme="dark"] [class*="text-slate-500"],
+.portal-shell[data-portal-theme="dark"] [class*="text-slate-400"] {
+  color: var(--portal-muted) !important;
+}
+
+.portal-shell[data-portal-theme="dark"] [class~="bg-brand-gold"][class*="text-brand-navy"] {
+  color: #172642 !important;
+}
+
+.portal-shell[data-portal-theme="dark"] [class*="border-slate"],
+.portal-shell[data-portal-theme="dark"] [class*="divide-slate"] > :not(:last-child),
+.portal-shell[data-portal-theme="dark"] table th,
+.portal-shell[data-portal-theme="dark"] table td {
+  border-color: var(--portal-border) !important;
+}
+
+.portal-shell[data-portal-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+.portal-shell[data-portal-theme="dark"] textarea,
+.portal-shell[data-portal-theme="dark"] select:not([multiple]) {
+  background-color: #18212e !important;
+  border-color: var(--portal-border) !important;
+  color: var(--portal-heading) !important;
+  -webkit-text-fill-color: var(--portal-heading) !important;
+}
+
+.portal-shell[data-portal-theme="dark"] input::placeholder,
+.portal-shell[data-portal-theme="dark"] textarea::placeholder {
+  color: var(--portal-muted) !important;
+  -webkit-text-fill-color: var(--portal-muted) !important;
+}
+
+.portal-shell[data-portal-theme="dark"] select:not([multiple]) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8' fill='none'%3E%3Cpath d='M1 1L7 7L13 1' stroke='%23d7e0ec' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+.portal-shell[data-portal-theme="dark"] select option {
+  background-color: #202734;
+  color: var(--portal-heading);
+}
+
+.portal-shell[data-portal-theme="dark"] [class*="bg-sky-50"],
+.portal-shell[data-portal-theme="dark"] [class*="bg-sky-100"] { background-color: #17374d !important; color: #bae6fd !important; }
+.portal-shell[data-portal-theme="dark"] [class*="bg-blue-50"],
+.portal-shell[data-portal-theme="dark"] [class*="bg-blue-100"] { background-color: #1a3454 !important; color: #bfdbfe !important; }
+.portal-shell[data-portal-theme="dark"] [class*="bg-indigo-50"],
+.portal-shell[data-portal-theme="dark"] [class*="bg-indigo-100"] { background-color: #272f56 !important; color: #c7d2fe !important; }
+.portal-shell[data-portal-theme="dark"] [class*="bg-violet-50"],
+.portal-shell[data-portal-theme="dark"] [class*="bg-violet-100"] { background-color: #342852 !important; color: #ddd6fe !important; }
+.portal-shell[data-portal-theme="dark"] [class*="bg-emerald-50"],
+.portal-shell[data-portal-theme="dark"] [class*="bg-emerald-100"] { background-color: #173b35 !important; color: #a7f3d0 !important; }
+.portal-shell[data-portal-theme="dark"] [class*="bg-amber-50"],
+.portal-shell[data-portal-theme="dark"] [class*="bg-amber-100"] { background-color: #493820 !important; color: #fde68a !important; }
+.portal-shell[data-portal-theme="dark"] [class*="bg-orange-50"],
+.portal-shell[data-portal-theme="dark"] [class*="bg-orange-100"] { background-color: #4a3125 !important; color: #fed7aa !important; }
+.portal-shell[data-portal-theme="dark"] [class*="bg-rose-50"],
+.portal-shell[data-portal-theme="dark"] [class*="bg-rose-100"],
+.portal-shell[data-portal-theme="dark"] [class*="bg-red-50"] { background-color: #462735 !important; color: #fecdd3 !important; }
+.portal-shell[data-portal-theme="dark"] [class*="bg-cyan-50"] { background-color: #16404a !important; color: #a5f3fc !important; }
+
+.portal-shell[data-portal-theme="dark"] [class*="text-sky-700"],
+.portal-shell[data-portal-theme="dark"] [class*="text-sky-800"],
+.portal-shell[data-portal-theme="dark"] [class*="text-sky-900"] { color: #bae6fd !important; }
+.portal-shell[data-portal-theme="dark"] [class*="text-blue-900"] { color: #bfdbfe !important; }
+.portal-shell[data-portal-theme="dark"] [class*="text-indigo-700"],
+.portal-shell[data-portal-theme="dark"] [class*="text-indigo-900"] { color: #c7d2fe !important; }
+.portal-shell[data-portal-theme="dark"] [class*="text-violet-600"],
+.portal-shell[data-portal-theme="dark"] [class*="text-violet-700"],
+.portal-shell[data-portal-theme="dark"] [class*="text-violet-800"],
+.portal-shell[data-portal-theme="dark"] [class*="text-violet-900"] { color: #ddd6fe !important; }
+.portal-shell[data-portal-theme="dark"] [class*="text-emerald-700"],
+.portal-shell[data-portal-theme="dark"] [class*="text-emerald-800"],
+.portal-shell[data-portal-theme="dark"] [class*="text-emerald-900"] { color: #a7f3d0 !important; }
+.portal-shell[data-portal-theme="dark"] [class*="text-amber-700"],
+.portal-shell[data-portal-theme="dark"] [class*="text-amber-800"],
+.portal-shell[data-portal-theme="dark"] [class*="text-amber-900"] { color: #fde68a !important; }
+.portal-shell[data-portal-theme="dark"] [class*="text-rose-600"],
+.portal-shell[data-portal-theme="dark"] [class*="text-rose-700"],
+.portal-shell[data-portal-theme="dark"] [class*="text-rose-900"] { color: #fecdd3 !important; }
+.portal-shell[data-portal-theme="dark"] [class*="text-orange-800"],
+.portal-shell[data-portal-theme="dark"] [class*="text-orange-900"] { color: #fed7aa !important; }
+.portal-shell[data-portal-theme="dark"] [class*="text-cyan-900"] { color: #a5f3fc !important; }
+
+.portal-shell[data-portal-theme="dark"] table thead { background-color: #303d50 !important; }
+.portal-shell[data-portal-theme="dark"] table thead th { color: var(--portal-heading) !important; }
+.portal-shell[data-portal-theme="dark"] table tbody tr:hover { background-color: #293548; }
+.portal-shell[data-portal-theme="dark"] .react-datepicker,
+.portal-shell[data-portal-theme="dark"] .react-datepicker__header { background: var(--portal-surface); color: var(--portal-text); border-color: var(--portal-border); }
+.portal-shell[data-portal-theme="dark"] .react-datepicker__current-month,
+.portal-shell[data-portal-theme="dark"] .react-datepicker__day-name,
+.portal-shell[data-portal-theme="dark"] .react-datepicker__day { color: var(--portal-text); }

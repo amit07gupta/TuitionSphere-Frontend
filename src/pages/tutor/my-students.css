@@ -1,0 +1,24 @@
+:root[data-admin-theme="dark"] .my-students-page .my-students-hero {
+  background: #24272e !important;
+  border-color: #3d424d !important;
+}
+
+:root[data-admin-theme="dark"] .my-students-page .assigned-students-card {
+  background: #123247 !important;
+  border-color: #27627e !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-admin-theme="dark"] .my-students-page .assigned-students-icon {
+  color: #a5f3fc !important;
+  background: #164e63 !important;
+}
+
+:root[data-admin-theme="dark"] .my-students-page .assigned-students-label {
+  color: #67e8f9 !important;
+}
+
+:root[data-admin-theme="dark"] .my-students-page .assigned-students-count {
+  color: #f8fafc !important;
+  -webkit-text-fill-color: #f8fafc !important;
+}

@@ -1,0 +1,14 @@
+import {useEffect,useState} from 'react';
+import {applyTheme,getThemeMode} from '../../../services/themeService';
+export default function Preferences({profile,onSave}){
+ const defaults={admissions:true,fees:true,academics:true,...profile.notificationPreferences};
+ const [values,setValues]=useState(defaults),[saving,setSaving]=useState(false),[error,setError]=useState('');
+ const [theme,setTheme]=useState(()=>getThemeMode()==='dark'?'dark':'light');
+ useEffect(()=>{const sync=e=>setTheme((e.detail||getThemeMode())==='dark'?'dark':'light');window.addEventListener('admin-theme-change',sync);return()=>window.removeEventListener('admin-theme-change',sync);},[]);
+ const dirty=Object.keys(values).some(k=>values[k]!==defaults[k]);
+ async function save(){if(saving||!dirty)return;setSaving(true);setError('');try{await onSave({notificationPreferences:values});}catch(e){setError(e.message);}finally{setSaving(false);}}
+ async function chooseTheme(value){const previous=theme;setTheme(value);applyTheme(value);setError('');try{await onSave({themePreference:value});}catch(e){setTheme(previous);applyTheme(previous);setError(e.message);}}
+ return <div className="profile-panel"><div className="profile-section-title"><h2>Appearance</h2><p>Choose how the admin panel looks on this device.</p></div><div className="profile-theme-options" role="radiogroup" aria-label="Theme preference">{[['light','Light'],['dark','Dark']].map(([value,label])=><button key={value} type="button" role="radio" aria-checked={theme===value} onClick={()=>chooseTheme(value)}><span className={`profile-theme-preview ${value}`}></span><strong>{label}</strong><small>{label+' appearance'}</small></button>)}</div><div className="profile-section-title profile-notification-title"><h2>Notification preferences</h2><p>Choose the updates you want to receive.</p></div><p className="profile-note">Your choices are saved to your account. Notification delivery will use them when the notification service is connected.</p>{error&&<p role="alert" className="profile-error">{error}</p>}
+ {[['admissions','Admissions & enquiries','New enquiries, demo requests and admission updates.'],['fees','Fees & invoices','Payment updates and invoice reminders.'],['academics','Academic updates','Attendance, assignments and schedule updates.']].map(([key,title,description])=><div className="profile-toggle-row" key={key}><div><h3 id={'pref-'+key}>{title}</h3><p>{description}</p></div><button type="button" role="switch" aria-checked={values[key]} aria-labelledby={'pref-'+key} disabled={saving} className="profile-switch" onClick={()=>setValues({...values,[key]:!values[key]})}><span/></button></div>)}
+ <div className="profile-footer"><span>{dirty?'You have unsaved changes':'Preferences saved'}</span><button className="profile-primary" disabled={!dirty||saving} onClick={save}>{saving?'Saving…':'Save preferences'}</button></div></div>;
+}

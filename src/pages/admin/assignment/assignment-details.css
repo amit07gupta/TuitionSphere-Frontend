@@ -1,0 +1,78 @@
+:root[data-admin-theme="dark"] .assignment-details-modal {
+  background: #24272e !important;
+  color: #dbe5f2 !important;
+  border-color: #596170 !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-details-body {
+  background: #24272e !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-details-modal .assignment-brief,
+:root[data-admin-theme="dark"] .assignment-details-modal article[class*="bg-white"] {
+  background: #2b2f38 !important;
+  border-color: #4b515e !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-details-modal .assignment-brief h3,
+:root[data-admin-theme="dark"] .assignment-details-modal h3[class*="text-brand-navy"] {
+  color: #f1f5f9 !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-details-modal .assignment-brief p,
+:root[data-admin-theme="dark"] .assignment-details-modal p[class*="text-slate-600"] {
+  color: #cbd5e1 !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-information {
+  background: #2b2f38 !important;
+  border-color: #4b515e !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-information dl {
+  border-color: #4b515e !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-information dt {
+  color: #9fb0c5 !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-information dd {
+  color: #f1f5f9 !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-details-modal table {
+  background: #24272e !important;
+  color: #dbe5f2 !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-details-modal table thead {
+  background: #303641 !important;
+  color: #f1f5f9 !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-details-modal table th,
+:root[data-admin-theme="dark"] .assignment-details-modal table td {
+  color: #dbe5f2 !important;
+  border-color: #4b515e !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-details-modal table tbody tr:hover {
+  background: #303641 !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-details-modal table a,
+:root[data-admin-theme="dark"] .assignment-details-modal article a {
+  color: #c4b5fd !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-details-footer {
+  background: #2b2f38 !important;
+  border-color: #3d424d !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-details-footer > button:first-child {
+  background: #1d2026 !important;
+  color: #dbe5f2 !important;
+  border-color: #596170 !important;
+}

@@ -1,0 +1,7 @@
+import { createPortal } from 'react-dom';
+import useAccessibleModal from '../../../hooks/useAccessibleModal';
+export default function DemoSetupDetails({setup,sessionName,gradeName,boardNames,onClose,onEdit}) {
+ const ref=useAccessibleModal(true,onClose);
+ const date=v=>v?new Date(v+'T00:00:00').toLocaleDateString('en-IN'):'—';
+ return createPortal(<div className="tutor-details-backdrop"><section ref={ref} className="tutor-details" role="dialog" aria-modal="true" aria-labelledby="demo-details-title" tabIndex={-1}><header><div><p>DEMO SETUP DETAILS</p><h2 id="demo-details-title">{setup.name}</h2></div><button aria-label="Close demo details" onClick={onClose}>×</button></header><dl>{[['Academic Session',sessionName],['Grade',gradeName],['Boards',boardNames],['Stream',setup.stream],['Tutor',setup.tutorName],['Mode',setup.mode],['Date Range',date(setup.demoStartDate)+' – '+date(setup.demoEndDate)],['Days',setup.availableDays.join(', ')],['Status',setup.status]].map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value||'—'}</dd></div>)}</dl><div className="demo-slot-details"><h3>Time Slots · IST</h3>{setup.timeSlots.map(slot=><div key={slot.id}><strong>{slot.startTime} – {slot.endTime}</strong><span>{slot.capacity} seats per date</span></div>)}<p>Capacity is configured per slot occurrence. Manage bookings in Demo Requests.</p></div><footer><button onClick={onEdit}>Edit Demo Setup</button></footer></section></div>,document.body);
+}

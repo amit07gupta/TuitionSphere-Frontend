@@ -1,0 +1,6 @@
+import { createPortal } from 'react-dom';
+import useAccessibleModal from '../../../hooks/useAccessibleModal';
+export default function BatchDetails({batch,sessionName,subjects,tutors,onClose,onEdit}) {
+ const ref=useAccessibleModal(true,onClose);
+ return createPortal(<div className="tutor-details-backdrop"><section ref={ref} tabIndex={-1} role="dialog" aria-modal="true" aria-labelledby="batch-details-title" className="tutor-details"><header><div><p>BATCH DETAILS</p><h2 id="batch-details-title">{batch.name}</h2></div><button aria-label="Close batch details" onClick={onClose}>×</button></header><dl>{[['Academic Session',sessionName||'Unavailable'],['Grade & Board','Grade '+batch.grade+' · '+batch.board],['Stream',batch.stream||'—'],['Mode',batch.mode],['Students',batch.enrolled+' / '+batch.capacity],['Status',batch.status]].map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl><div className="batch-assignment-details"><h3>Subjects & Default Tutors</h3>{batch.tutorAssignments.map(a=><div key={a.subjectId}><strong>{subjects.find(s=>s.id===a.subjectId)?.name||'Unavailable subject'}</strong><span>{tutors.find(t=>t.id===a.tutorId)?.name||'Unavailable tutor'}</span></div>)}</div><footer><button onClick={onEdit}>Edit Batch</button></footer></section></div>,document.body);
+}

@@ -1,0 +1,78 @@
+.attendance-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--board-border);
+  border-radius: 12px;
+  background: var(--board-surface);
+  box-shadow: 0 4px 14px rgba(30, 41, 59, .06);
+}
+
+.attendance-tabs button {
+  min-height: 36px;
+  padding: 0 15px;
+  border-radius: 9px;
+  color: var(--board-muted);
+  font-size: 11px;
+  font-weight: 750;
+  transition: color .18s, background .18s;
+}
+
+.attendance-tabs button:hover { background: #f1f5f9; }
+.attendance-tabs button.is-active { color: #fff; background: #172642; }
+.attendance-page .attendance-metric-amber { --metric-color: #b7791f; --metric-soft: #fff8df; }
+.attendance-page .attendance-history-filters select { margin-left: auto; }
+.attendance-page .attendance-leave-filters { flex-wrap: wrap; }
+.attendance-page .attendance-leave-filters select { flex: 1 1 180px; width: auto; max-width: 230px; }
+.attendance-workspace { border-color: var(--board-border)!important; }
+.attendance-primary-actions button { min-height: 40px; }
+.attendance-page .attendance-leaves .academic-actions-table thead th:last-child {
+  color: #334155!important;
+  background: #f6f7fb!important;
+}
+.attendance-page .attendance-view-action {
+  color: #0369a1!important;
+  border-color: #cbd5e1!important;
+  background: transparent!important;
+}
+.attendance-page .attendance-view-action:hover {
+  color: #075985!important;
+  border-color: #7dd3fc!important;
+  background: #f0f9ff!important;
+}
+
+:root[data-admin-theme="dark"] .attendance-tabs {
+  background: #24272e;
+  border-color: #3d424d;
+}
+:root[data-admin-theme="dark"] .attendance-tabs button:hover { background: #303641; }
+:root[data-admin-theme="dark"] .attendance-tabs button.is-active { background: #405487; }
+:root[data-admin-theme="dark"] .attendance-page .attendance-metric-amber.is-selected { --metric-soft: #40351d; }
+:root[data-admin-theme="dark"] .attendance-workspace,
+:root[data-admin-theme="dark"] .attendance-workspace-header { background: #24272e; border-color: #3d424d; }
+:root[data-admin-theme="dark"] .attendance-workspace > div:nth-child(2) { background: #2b2f38; border-color: #3d424d; }
+:root[data-admin-theme="dark"] .attendance-workspace h2,
+:root[data-admin-theme="dark"] .attendance-workspace strong { color: #f1f5f9; }
+:root[data-admin-theme="dark"] .attendance-workspace p,
+:root[data-admin-theme="dark"] .attendance-workspace label { color: #aebdd0; }
+:root[data-admin-theme="dark"] .attendance-workspace input,
+:root[data-admin-theme="dark"] .attendance-workspace select { color: #f1f5f9!important; -webkit-text-fill-color: #f1f5f9!important; background-color: #1d2026!important; border-color: #455a76!important; }
+:root[data-admin-theme="dark"] .attendance-workspace tbody tr { background: #24272e; }
+:root[data-admin-theme="dark"] .attendance-workspace tbody tr:hover { background: #303641!important; }
+:root[data-admin-theme="dark"] .attendance-page .attendance-leaves .academic-actions-table thead th:last-child {
+  color: #f8fafc!important;
+  background: #303641!important;
+}
+:root[data-admin-theme="dark"] .attendance-page .attendance-view-action {
+  color: #7dd3fc!important;
+  border-color: #455a76!important;
+  background: transparent!important;
+}
+
+@media (max-width: 640px) {
+  .attendance-tabs { display: flex; width: 100%; }
+  .attendance-tabs button { flex: 1; padding: 0 8px; }
+  .attendance-primary-actions { flex-direction: column; }
+  .attendance-primary-actions button { width: 100%; }
+  .attendance-page .attendance-leave-filters select { max-width: none; }
+}

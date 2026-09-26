@@ -1,0 +1,105 @@
+.inquiry-page .board-filters {
+  flex-wrap: wrap;
+}
+
+.inquiry-page .board-filters label {
+  min-width: 260px;
+}
+
+.inquiry-page .board-filters select {
+  flex-shrink: 0;
+}
+
+.inquiry-avatar {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  border-radius: 10px;
+  color: #f7b548;
+  background: #172642;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.inquiry-view-action {
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
+}
+
+:root[data-admin-theme="dark"] .inquiry-page .inquiry-view-action {
+  background: #293448 !important;
+  border-color: #52698a !important;
+}
+
+:root[data-admin-theme="dark"] .inquiry-avatar {
+  color: #fcd58b;
+  background: #34445f;
+}
+
+:root[data-admin-theme="dark"] .inquiry-page .inquiry-view-action::before {
+  background-color: #bfdbfe !important;
+}
+
+:root[data-admin-theme="dark"] .inquiry-page .inquiry-view-action:hover {
+  background: #33425a !important;
+  border-color: #d99a37 !important;
+}
+
+:root[data-admin-theme="dark"] .inquiry-page .inquiry-view-action:hover::before {
+  background-color: #fde68a !important;
+}
+
+:root[data-admin-theme="dark"] .inquiry-modal {
+  background: #24272e !important;
+  color: #dbe5f2 !important;
+  border: 1px solid #3d424d;
+}
+
+:root[data-admin-theme="dark"] .inquiry-modal > header {
+  background: linear-gradient(135deg, #30343d, #282b32) !important;
+  border-color: #3d424d !important;
+}
+
+:root[data-admin-theme="dark"] .inquiry-modal-body {
+  background: #24272e;
+}
+
+:root[data-admin-theme="dark"] .inquiry-detail-card,
+:root[data-admin-theme="dark"] .inquiry-message-card {
+  background: #2b2f38 !important;
+  border-color: #4b515e !important;
+}
+
+:root[data-admin-theme="dark"] .inquiry-detail-card p,
+:root[data-admin-theme="dark"] .inquiry-message-card > p:first-child {
+  color: #9fb0c5 !important;
+}
+
+:root[data-admin-theme="dark"] .inquiry-detail-card strong,
+:root[data-admin-theme="dark"] .inquiry-message-card > p:last-child {
+  color: #e2e8f0 !important;
+}
+
+:root[data-admin-theme="dark"] .inquiry-modal label {
+  color: #dbe5f2 !important;
+}
+
+:root[data-admin-theme="dark"] .inquiry-modal textarea {
+  background: #1d2026 !important;
+  color: #f1f5f9 !important;
+  -webkit-text-fill-color: #f1f5f9 !important;
+  border-color: #596170 !important;
+}
+
+:root[data-admin-theme="dark"] .inquiry-modal textarea::placeholder {
+  color: #8fa2ba !important;
+  -webkit-text-fill-color: #8fa2ba !important;
+}
+
+:root[data-admin-theme="dark"] .inquiry-modal-actions {
+  border-color: #3d424d !important;
+}

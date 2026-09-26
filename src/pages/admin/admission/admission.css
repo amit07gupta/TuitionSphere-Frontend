@@ -1,0 +1,121 @@
+.admission-page .board-metric {
+  cursor: default;
+}
+
+.admission-page .board-metric-amber {
+  --metric-color: #b7791f;
+  --metric-soft: #fff8e6;
+}
+
+.admission-page .board-metric:hover {
+  transform: none;
+}
+
+.admission-directory-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admission-directory-actions button {
+  color: #334155;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.admission-directory-actions strong {
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: #047857;
+  background: #dff8ec;
+  font-size: 10px;
+}
+
+.admission-student {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admission-student > span {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  border-radius: 10px;
+  color: #f7b548;
+  background: #172642;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.admission-page table td strong,
+.admission-page table td small {
+  display: block;
+}
+
+.admission-page table td strong {
+  color: #172642;
+  font-weight: 700;
+}
+
+.admission-page table td small {
+  margin-top: 3px;
+  color: #64748b;
+  font-size: 10px;
+}
+
+.admission-source {
+  display: inline-flex;
+  padding: 5px 8px;
+  border-radius: 7px;
+  color: #4338ca;
+  background: #eef2ff;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.admission-page table tbody td:last-child .admission-start {
+  width: auto;
+  min-width: 126px;
+  padding: 0 14px;
+  color: #fff;
+  background: #059669;
+  border-color: #059669;
+  font-size: 10px;
+}
+
+.admission-page table tbody td:last-child .admission-start::before {
+  display: none;
+}
+
+:root[data-admin-theme="dark"] .admission-directory-actions button {
+  color: #cbd5e1;
+}
+
+:root[data-admin-theme="dark"] .admission-page .board-metric-amber {
+  --metric-soft: #443319;
+}
+
+:root[data-admin-theme="dark"] .admission-directory-actions strong {
+  color: #a7f3d0;
+  background: #123b35;
+}
+
+:root[data-admin-theme="dark"] .admission-student > span {
+  color: #fcd58b;
+  background: #34445f;
+}
+
+:root[data-admin-theme="dark"] .admission-source {
+  color: #c7d2fe;
+  background: #292951;
+}
+
+@media (max-width: 640px) {
+  .admission-directory-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

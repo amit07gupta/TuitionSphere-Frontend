@@ -1,0 +1,9 @@
+export const feePayments = [
+  { id: 'PAY-260801', studentId: 'TS-2401', studentName: 'Aarav Sharma', grade: '10', board: 'CBSE', program: 'Board Preparation', installment: 'August 2026', amount: 6500, dueDate: '2026-08-05', paidOn: '2026-08-03', method: 'UPI', transactionId: 'UPI260803A01', status: 'Paid' },
+  { id: 'PAY-260807', studentId: 'TS-2401', studentName: 'Aarav Sharma', grade: '10', board: 'CBSE', program: 'Board Preparation', installment: 'September 2026', amount: 6500, dueDate: '2026-09-05', paidOn: '', method: '', transactionId: '', status: 'Pending' },
+  { id: 'PAY-260802', studentId: 'TS-2402', studentName: 'Ananya Verma', grade: '8', board: 'ICSE', program: 'Middle School Foundation', installment: 'August 2026', amount: 4800, dueDate: '2026-08-07', paidOn: '', method: '', transactionId: '', status: 'Pending' },
+  { id: 'PAY-260803', studentId: 'TS-2403', studentName: 'Vivaan Singh', grade: '11', board: 'CBSE', program: 'Science Stream', installment: 'August 2026', amount: 8200, dueDate: '2026-08-02', paidOn: '', method: '', transactionId: '', status: 'Overdue' },
+  { id: 'PAY-260804', studentId: 'TS-2404', studentName: 'Diya Kapoor', grade: '5', board: 'CBSE', program: 'Primary Foundation', installment: 'August 2026', amount: 3600, dueDate: '2026-08-10', paidOn: '2026-08-09', method: 'Bank Transfer', transactionId: 'NEFT260809D04', status: 'Paid' },
+  { id: 'PAY-260805', studentId: 'TS-2405', studentName: 'Kabir Mehta', grade: '9', board: 'ICSE', program: 'Board Preparation', installment: 'August 2026', amount: 6200, dueDate: '2026-08-15', paidOn: '', method: '', transactionId: '', status: 'Pending' },
+  { id: 'PAY-260806', studentId: 'TS-2406', studentName: 'Myra Nair', grade: '7', board: 'CBSE', program: 'Middle School Foundation', installment: 'August 2026', amount: 4200, dueDate: '2026-08-06', paidOn: '2026-08-06', method: 'Card', transactionId: 'CARD260806M06', status: 'Paid' },
+];

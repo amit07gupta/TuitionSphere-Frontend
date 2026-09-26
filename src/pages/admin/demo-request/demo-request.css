@@ -1,0 +1,114 @@
+.demo-request-page .demo-request-filters {
+  flex-wrap: wrap;
+}
+
+.demo-request-page .demo-request-filters label {
+  min-width: 260px;
+  max-width: none;
+  flex: 1;
+}
+
+.demo-request-page .demo-request-filters select {
+  width: 180px;
+  flex: 0 0 180px;
+}
+
+.demo-request-action {
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
+  background: #fff;
+  border-color: #cbd5e1;
+}
+
+:root[data-admin-theme="dark"] .demo-request-page .demo-request-action {
+  background: #293448 !important;
+  color: #dbeafe !important;
+  -webkit-text-fill-color: #dbeafe !important;
+  border-color: #52698a !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
+}
+
+:root[data-admin-theme="dark"] .demo-request-page .demo-request-action:hover {
+  background: #33425a !important;
+  border-color: #d99a37 !important;
+}
+
+:root[data-admin-theme="dark"] .demo-request-page .demo-request-action::before {
+  background-color: #bfdbfe !important;
+}
+
+@media (max-width: 640px) {
+  .demo-request-page .demo-request-filters label {
+    flex-basis: 100%;
+  }
+
+  .demo-request-page .demo-request-filters select {
+    width: auto;
+    flex: 1 1 44%;
+  }
+}
+
+:root[data-admin-theme="dark"] .demo-request-page .demo-request-action:hover::before {
+  background-color: #fde68a !important;
+}
+
+:root[data-admin-theme="dark"] .demo-request-modal {
+  background: #24272e !important;
+  color: #dbe5f2 !important;
+  border: 1px solid #3d424d;
+}
+
+:root[data-admin-theme="dark"] .demo-request-modal > header,
+:root[data-admin-theme="dark"] .demo-request-footer {
+  background: #2b2f38 !important;
+  border-color: #3d424d !important;
+}
+
+:root[data-admin-theme="dark"] .demo-request-card {
+  background: #292d35 !important;
+  border-color: #4b515e !important;
+}
+
+:root[data-admin-theme="dark"] .demo-request-detail {
+  border-color: #3d424d !important;
+}
+
+:root[data-admin-theme="dark"] .demo-request-detail dt {
+  color: #9fb0c5 !important;
+}
+
+:root[data-admin-theme="dark"] .demo-request-detail dd {
+  color: #e2e8f0 !important;
+}
+
+:root[data-admin-theme="dark"] .demo-request-modal > div > p {
+  color: #cbd5e1 !important;
+  border-color: #4b515e !important;
+  background: #292d35;
+}
+
+:root[data-admin-theme="dark"] .demo-request-schedule {
+  background: #3b321f !important;
+  border-color: #7a6330 !important;
+}
+
+:root[data-admin-theme="dark"] .demo-request-schedule p,
+:root[data-admin-theme="dark"] .demo-request-schedule label {
+  color: #fde68a !important;
+  -webkit-text-fill-color: #fde68a !important;
+}
+
+:root[data-admin-theme="dark"] .demo-request-schedule input,
+:root[data-admin-theme="dark"] .demo-request-schedule select,
+:root[data-admin-theme="dark"] .demo-request-schedule textarea {
+  background: #1d2026 !important;
+  color: #f1f5f9 !important;
+  -webkit-text-fill-color: #f1f5f9 !important;
+  border-color: #596170 !important;
+}
+
+:root[data-admin-theme="dark"] .demo-request-footer button {
+  border-color: #596170;
+}

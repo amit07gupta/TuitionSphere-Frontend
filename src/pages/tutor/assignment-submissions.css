@@ -1,0 +1,36 @@
+:root[data-admin-theme="dark"] .assignment-submissions-drawer {
+  background: #24272e !important;
+  color: #dbe5f2;
+  border-color: #3d424d !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-submissions-drawer > div {
+  background: #24272e;
+}
+
+:root[data-admin-theme="dark"] .assignment-submission-stat,
+:root[data-admin-theme="dark"] .assignment-student-card {
+  background: #2b2f38 !important;
+  border-color: #4b515e !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-submissions-drawer input,
+:root[data-admin-theme="dark"] .assignment-submissions-drawer select,
+:root[data-admin-theme="dark"] .assignment-submissions-drawer button[class*="bg-white"] {
+  background: #1d2026 !important;
+  color: #e2e8f0 !important;
+  border-color: #4b515e !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-submissions-drawer strong,
+:root[data-admin-theme="dark"] .assignment-submissions-drawer dd[class*="text-brand-navy"] {
+  color: #f8fafc !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-student-card dl {
+  border-color: #3d424d !important;
+}
+
+:root[data-admin-theme="dark"] .assignment-student-card dd {
+  color: #cbd5e1;
+}

@@ -1,0 +1,20 @@
+import { useState } from 'react';
+const money = (value) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(value);
+const date = (value) => new Intl.DateTimeFormat('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', year: 'numeric' }).format(new Date(value));
+const label = (value) => value.replaceAll('_', ' ');
+function HistoryTable({ title, columns, rows }) {
+  const [page, setPage] = useState(0);
+  const last = Math.max(0, Math.ceil(rows.length / 8) - 1);
+  const current = Math.min(page, last);
+  return <article className="mt-4 rounded-2xl border border-slate-200 bg-white p-5"><h2 className="text-lg font-semibold text-brand-navy">{title}</h2>{rows.length ? <><div className="mt-3 overflow-x-auto"><table className="w-full text-left text-xs"><thead className="bg-slate-50 text-slate-500"><tr>{columns.map((column) => <th key={column} className="whitespace-nowrap p-3">{column}</th>)}</tr></thead><tbody>{rows.slice(current * 8, current * 8 + 8).map((row) => <tr key={row.id} className="border-b border-slate-100">{row.values.map((value, i) => <td key={i} className="p-3">{value ?? '—'}</td>)}</tr>)}</tbody></table></div><div className="mt-3 flex items-center justify-end gap-4 text-xs"><span>{current * 8 + 1}–{Math.min(rows.length, current * 8 + 8)} of {rows.length}</span><button disabled={!current} onClick={() => setPage(current - 1)} className="disabled:opacity-30">Previous</button><button disabled={current === last} onClick={() => setPage(current + 1)} className="disabled:opacity-30">Next</button></div></> : <p className="mt-3 text-sm text-slate-500">No records available.</p>}</article>;
+}
+export default function StudentHistory({ overview, error, retry }) {
+  if (error) return <div role="alert" className="mt-4 rounded-xl bg-red-50 p-4 text-sm text-red-700">{error}<button onClick={retry} className="ml-4 underline">Retry history</button></div>;
+  if (!overview) return <p role="status" className="mt-4 text-sm text-slate-500">Loading attendance and fees…</p>;
+  const payments = overview.invoices.flatMap((invoice) => invoice.payments.map((row) => ({ ...row, invoiceNumber: invoice.invoiceNumber }))).sort((a, b) => new Date(b.paymentDate) - new Date(a.paymentDate));
+  return <><section className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[['Attendance', overview.attendance.percentage == null ? '—' : `${overview.attendance.percentage}%`], ['Total invoiced', money(overview.fees.invoiced)], ['Amount paid', money(overview.fees.paid)], ['Outstanding', money(overview.fees.outstanding)]].map(([title, value]) => <div key={title} className="rounded-xl border border-slate-200 bg-white p-4"><p className="text-xs text-slate-500">{title}</p><strong className="mt-2 block text-xl text-brand-navy">{value}</strong></div>)}</section><p className="mt-3 text-xs text-slate-500">All academic sessions · Attendance: {overview.attendance.present} present, {overview.attendance.absent} absent, {overview.attendance.leave} leave. Percentage uses marked present and absent records only; leave and unmarked classes are excluded. Fee totals exclude draft and cancelled invoices.</p>
+    <HistoryTable title="Invoices" columns={['Invoice', 'Description', 'Due date', 'Total', 'Paid', 'Outstanding', 'Status']} rows={overview.invoices.map((row) => ({ id: row.id, values: [row.invoiceNumber, row.title, date(row.dueDate), money(row.totalAmount), money(row.paidAmount), money(row.outstandingAmount), label(row.status)] }))} />
+    <HistoryTable title="Payment history" columns={['Receipt', 'Invoice', 'Date', 'Amount', 'Mode', 'Reference']} rows={payments.map((row) => ({ id: row.id, values: [row.receiptNumber, row.invoiceNumber, date(row.paymentDate), money(row.amount), label(row.paymentMode), row.transactionReference] }))} />
+    <HistoryTable title="Attendance history" columns={['Date', 'Subject', 'Batch', 'Time (IST)', 'Status']} rows={overview.attendanceHistory.map((row) => ({ id: row.id, values: [date(row.date), row.classSchedule.subject.name, row.classSchedule.batch.name, row.classSchedule.startTime, label(row.status)] }))} />
+  </>;
+}

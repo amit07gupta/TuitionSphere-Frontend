@@ -1,0 +1,10 @@
+import { tutorAuthenticatedRequest } from './authApi';
+const query = (filters = {}) => { const params = new URLSearchParams(); Object.entries(filters).forEach(([key, value]) => { if (value && value !== 'all') params.set(key, value); }); return params.size ? `?${params}` : ''; };
+export const fetchTutorAssignments = async (filters) => (await tutorAuthenticatedRequest(`/tutor/assignments${query(filters)}`)).data;
+export const fetchTutorAssignment = async (id) => (await tutorAuthenticatedRequest(`/tutor/assignments/${encodeURIComponent(id)}`)).data;
+export const fetchTutorAssignmentSubmissions = async (id) => (await tutorAuthenticatedRequest(`/tutor/assignments/${encodeURIComponent(id)}/submissions`)).data;
+export const fetchTutorSubmissionFile = async (assignmentId, submissionId) => (await tutorAuthenticatedRequest(`/tutor/assignments/${encodeURIComponent(assignmentId)}/submissions/${encodeURIComponent(submissionId)}/file`)).data;
+export const createTutorAssignment = async (data) => (await tutorAuthenticatedRequest('/tutor/assignments', { method: 'POST', body: JSON.stringify(data) })).data;
+export const updateTutorAssignment = async (id, data) => (await tutorAuthenticatedRequest(`/tutor/assignments/${encodeURIComponent(id)}`, { method: 'PUT', body: JSON.stringify(data) })).data;
+export const archiveTutorAssignment = async (item) => (await tutorAuthenticatedRequest(`/tutor/assignments/${encodeURIComponent(item.id)}/archive`, { method: 'PATCH', body: JSON.stringify({ action: item.status === 'Archived' ? 'restore' : 'archive', expectedStatus: item.status }) })).data;
+export const reviewTutorSubmission = async (assignmentId, submissionId, data) => (await tutorAuthenticatedRequest(`/tutor/assignments/${encodeURIComponent(assignmentId)}/submissions/${encodeURIComponent(submissionId)}/review`, { method: 'PATCH', body: JSON.stringify(data) })).data;

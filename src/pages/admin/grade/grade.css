@@ -1,0 +1,11 @@
+.grade-page .board-header-actions button:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+.grade-page .board-filters { flex-wrap: wrap; }
+.grade-page .board-filters label { min-width: 200px; }
+.grade-page .board-filters select { flex-shrink: 0; }
+.grade-form input::placeholder { color: #64748b; -webkit-text-fill-color: #64748b; font-size: 12px; font-weight: 400; opacity: 1; }
+.grade-form input:not([type="checkbox"]), .grade-form select { font-weight: 400; }
+.grade-form input[type="checkbox"] { accent-color: #4f46c7; width: 16px; height: 16px; flex-shrink: 0; }
+.grade-form fieldset { border-color: #94a3b8; }
+.grade-form legend, .grade-form fieldset label span { color: #334155; }
+.grade-form fieldset label:has(input:checked) { border-color: #4f46c7; background: #eeedff; }
+.grade-page :focus-visible, .grade-form :focus-visible { outline: 2px solid #4f46c7; outline-offset: 3px; }

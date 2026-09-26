@@ -1,0 +1,4 @@
+export const initialDoubts = [
+  { id: 'DBT-1001', studentId: 'TS-2401', studentName: 'Aarav Sharma', grade: '10', board: 'CBSE', subject: 'Mathematics', question: 'How do I decide which method to use for solving a quadratic equation?', priority: 'Normal', status: 'Resolved', tutorId: 'TUT-001', tutorName: 'Rajesh Tiwari', response: 'First check whether the expression factorises easily. Otherwise use completing the square or the quadratic formula. We will practise this decision process in the next revision class.', createdAt: '2026-08-10', updatedAt: '2026-08-11' },
+  { id: 'DBT-1002', studentId: 'TS-2401', studentName: 'Aarav Sharma', grade: '10', board: 'CBSE', subject: 'Science', question: 'Why does a ray bend when it moves from air into glass?', priority: 'High', status: 'In Review', tutorId: 'TUT-002', tutorName: 'Anjali Mehta', response: '', createdAt: '2026-08-12', updatedAt: '2026-08-12' },
+];
