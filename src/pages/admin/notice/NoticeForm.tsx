@@ -4,7 +4,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { fieldClass, priorityStyle, toDate, toValue } from './noticeUtils';
 
 function DateField({ label, value, onChange, minDate, required = false }) {
-  return <label className="text-xs font-semibold text-slate-600">{label}<DatePicker selected={toDate(value)} onChange={(date) => onChange(toValue(date))} minDate={toDate(minDate)} dateFormat="dd/MM/yyyy" placeholderText="DD/MM/YYYY" showMonthDropdown showYearDropdown dropdownMode="select" isClearable={!required} required={required} autoComplete="off" wrapperClassName="w-full" className={fieldClass} portalId="notice-datepicker-root" popperClassName="z-[120]" /></label>;
+  const preventManualEntry = (event) => event.preventDefault();
+  return <label className="text-xs font-semibold text-slate-600">{label}<DatePicker selected={toDate(value)} onChange={(date) => onChange(toValue(date))} minDate={toDate(minDate)} dateFormat="dd/MM/yyyy" placeholderText="DD/MM/YYYY" showMonthDropdown showYearDropdown dropdownMode="select" yearDropdownItemNumber={8} scrollableYearDropdown isClearable={!required} required={required} autoComplete="off" inputMode="none" onKeyDown={preventManualEntry} onPaste={preventManualEntry} onDrop={preventManualEntry} shouldCloseOnSelect wrapperClassName="w-full" className={`${fieldClass} cursor-pointer caret-transparent`} portalId="academic-session-datepicker-root" popperClassName="academic-session-datepicker-popper z-[120]" calendarClassName="academic-session-datepicker !font-sans" popperPlacement="bottom-start" /></label>;
 }
 
 export default function NoticeForm({ title, modalRef, save, closeForm, isSaving, form, update, availableGrades, activeBatches, availableTutors, setForm, formError }) {

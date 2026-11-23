@@ -740,7 +740,7 @@ function ClassScheduleManagement() {
         ].map(([label, value, style, icon]) => (
           <article
             key={label}
-            className={`flex items-center justify-between rounded-xl border border-l-4 px-4 py-3 shadow-sm ${style}`}
+            className={`schedule-summary-card flex items-center justify-between rounded-xl border border-l-4 px-4 py-3 shadow-sm ${style}`}
           >
             <span><span className="block text-[10px] font-semibold opacity-75">{label}</span><strong className="mt-0.5 block font-heading text-xl">{value}</strong></span>
             <span className="tutor-heading-icon"><AdminMetricIcon name={icon} className="h-[18px] w-[18px]" /></span>
@@ -1035,6 +1035,11 @@ function ClassScheduleManagement() {
                   maxDate={selectedBatch?.academicSession?.endDate ? new Date(selectedBatch.academicSession.endDate) : undefined}
                   dateFormat="dd/MM/yyyy"
                   placeholderText="Select start date"
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  calendarClassName="schedule-date-calendar"
+                  popperClassName="schedule-date-popper"
                   wrapperClassName="w-full"
                   className={inputClass}
                   required
@@ -1062,6 +1067,11 @@ function ClassScheduleManagement() {
                     maxDate={selectedBatch?.academicSession?.endDate ? new Date(selectedBatch.academicSession.endDate) : undefined}
                     dateFormat="dd/MM/yyyy"
                     placeholderText="Select end date"
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
+                    calendarClassName="schedule-date-calendar"
+                    popperClassName="schedule-date-popper"
                     wrapperClassName="w-full"
                     className={inputClass}
                     required

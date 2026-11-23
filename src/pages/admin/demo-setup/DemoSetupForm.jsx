@@ -7,6 +7,18 @@ const weekdays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday',
 const inputClass = 'mt-1.5 h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-sm text-slate-700 outline-none';
 const parseDate = value => value ? new Date(value + 'T00:00:00') : null;
 const dateValue = date => date ? date.getFullYear() + '-' + String(date.getMonth()+1).padStart(2,'0') + '-' + String(date.getDate()).padStart(2,'0') : '';
+const timeOptions = Array.from({ length: 48 }, (_, index) => {
+  const hour = Math.floor(index / 2);
+  const minute = index % 2 ? 30 : 0;
+  const value = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+  const displayHour = hour % 12 || 12;
+  return { value, label: `${displayHour}:${String(minute).padStart(2, '0')} ${hour < 12 ? 'AM' : 'PM'}` };
+});
+const defaultEndTime = startTime => {
+  const startIndex = timeOptions.findIndex(option => option.value === startTime);
+  if (startIndex < 0) return '';
+  return timeOptions[Math.min(startIndex + 2, timeOptions.length - 1)]?.value || '';
+};
 export default function DemoSetupForm({form,sessionName,grades,eligibleBoards,eligibleTutors,seniorSelected,update,toggle,submit,updateSlot,removeSlot,addSlot,error,saving,onClose}) {
  const dialogRef = useAccessibleModal(true,onClose);
   return createPortal(<div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/55 p-3 backdrop-blur-sm" onMouseDown={(event) => event.target === event.currentTarget && onClose()}><div ref={dialogRef} role="dialog" aria-modal="true" tabIndex="-1" aria-labelledby="demo-form-title" className="demo-form flex max-h-[calc(100svh-24px)] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl outline-none">
@@ -23,7 +35,23 @@ export default function DemoSetupForm({form,sessionName,grades,eligibleBoards,el
         <DateField saving={saving} label="Demo Start Date" value={form.demoStartDate} onChange={(date) => update("demoStartDate", dateValue(date))} />
         <DateField saving={saving} label="Demo End Date" value={form.demoEndDate} minDate={parseDate(form.demoStartDate)} onChange={(date) => update("demoEndDate", dateValue(date))} />
         <fieldset className="demo-choice-group rounded-xl border border-slate-200 p-3 md:col-span-2"><legend className="px-1 text-sm font-semibold text-slate-700">Demo Days</legend><div className="flex flex-wrap gap-2">{weekdays.map((day) => <Choice key={day} label={day.slice(0, 3)} checked={form.availableDays.includes(day)} onChange={() => toggle("availableDays", day)} />)}</div></fieldset>
-        <fieldset className="demo-choice-group rounded-xl border border-slate-200 p-3 md:col-span-2"><legend className="px-1 text-sm font-semibold text-slate-700">Available Time Slots</legend><div className="space-y-3">{form.timeSlots.map((slot, index) => <div key={slot.id} className="demo-time-slot grid items-end gap-3 rounded-xl bg-slate-50 p-3 sm:grid-cols-[1fr_1fr_140px_auto]"><Field label={`Slot ${index + 1} Start`}><input type="time" required value={slot.startTime} onChange={(e) => updateSlot(slot.id, "startTime", e.target.value)} className={inputClass} /></Field><Field label="End"><input type="time" required value={slot.endTime} onChange={(e) => updateSlot(slot.id, "endTime", e.target.value)} className={inputClass} /></Field><Field label="Capacity"><input type="number" min="1" required value={slot.capacity} onChange={(e) => updateSlot(slot.id, "capacity", e.target.value)} className={inputClass} /></Field><button type="button" onClick={() => removeSlot(slot.id)} disabled={form.timeSlots.length === 1} className="demo-remove-slot h-11 rounded-xl border border-rose-200 bg-white px-3 text-xs font-bold text-rose-600 disabled:cursor-not-allowed disabled:opacity-35">Remove</button></div>)}</div><button type="button" onClick={addSlot} className="demo-add-slot mt-3 rounded-xl border border-brand-navy px-4 py-2 text-xs font-bold text-brand-navy">+ Add Another Slot</button></fieldset>
+        <fieldset className="demo-choice-group rounded-xl border border-slate-200 p-3 md:col-span-2">
+          <legend className="px-1 text-sm font-semibold text-slate-700">Available Time Slots</legend>
+          <div className="space-y-3">{form.timeSlots.map((slot, index) => {
+            const endOptions = timeOptions.filter(option => !slot.startTime || option.value > slot.startTime);
+            const changeStartTime = (value) => {
+              updateSlot(slot.id, "startTime", value);
+              if (!slot.endTime || slot.endTime <= value) updateSlot(slot.id, "endTime", defaultEndTime(value));
+            };
+            return <div key={slot.id} className="demo-time-slot grid items-end gap-3 rounded-xl bg-slate-50 p-3 sm:grid-cols-[1fr_1fr_140px_auto]">
+              <Field label={`Slot ${index + 1} Start`}><select required value={slot.startTime} onChange={(e) => changeStartTime(e.target.value)} className={inputClass}><option value="">Select start time</option>{timeOptions.slice(0, -1).map(option => <option key={option.value} value={option.value}>{option.label}</option>)}</select></Field>
+              <Field label="End"><select required disabled={!slot.startTime} value={slot.endTime} onChange={(e) => updateSlot(slot.id, "endTime", e.target.value)} className={inputClass}><option value="">Select end time</option>{endOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}</select></Field>
+              <Field label="Capacity"><input type="number" min="1" required value={slot.capacity} onChange={(e) => updateSlot(slot.id, "capacity", e.target.value)} className={inputClass} /></Field>
+              <button type="button" onClick={() => removeSlot(slot.id)} disabled={form.timeSlots.length === 1} className="demo-remove-slot h-11 rounded-xl border border-rose-200 bg-white px-3 text-xs font-bold text-rose-600 disabled:cursor-not-allowed disabled:opacity-35">Remove</button>
+            </div>;
+          })}</div>
+          <button type="button" onClick={addSlot} className="demo-add-slot mt-3 rounded-xl border border-brand-navy px-4 py-2 text-xs font-bold text-brand-navy">+ Add Another Slot</button>
+        </fieldset>
       </fieldset>{error && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-3 text-sm font-semibold text-red-600">{error}</p>}</div><footer className="demo-form-footer flex shrink-0 justify-end gap-2 border-t bg-slate-50 px-5 py-4"><button type="button" onClick={() => onClose()} className="demo-form-cancel rounded-xl border px-4 py-2.5 text-sm font-bold text-slate-600">Cancel</button><button disabled={saving} className="demo-form-save rounded-xl bg-brand-navy px-5 py-2.5 text-sm font-bold text-white">{saving ? 'Saving…' : 'Save Demo Setup'}</button></footer></form>
     </div></div>, document.body);
 }

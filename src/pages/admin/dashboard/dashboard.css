@@ -44,6 +44,9 @@
 .db-header h1 span {
   color: var(--db-accent);
 }
+.db-welcome{display:flex;align-items:center;gap:13px}
+.db-welcome-icon{display:grid;width:46px;height:46px;flex-shrink:0;place-items:center;border-radius:13px;color:#fff;background:linear-gradient(135deg,#2bb8ea,#6855e7);box-shadow:0 9px 22px rgba(80,102,225,.28)}
+.db-welcome-icon svg{width:21px;height:21px;stroke-width:2}
 .db-subtitle {
   font-size: 13px;
   color: var(--db-muted);
@@ -1073,3 +1076,22 @@
     font-size: 10px;
   }
 }
+
+/* Multicolour overview cards shared with the other admin modules. */
+.db-cards .db-stat{position:relative;min-height:128px;padding:18px 20px;border:1px solid #dfe5ee;border-radius:16px;background:#fff;color:var(--db-ink);box-shadow:0 8px 22px rgba(30,41,59,.07)}
+.db-cards .db-stat:hover{transform:translateY(-2px);border-color:#cbd5e1;box-shadow:0 13px 28px rgba(30,41,59,.11)}
+.db-cards .db-stat-top{align-items:flex-start;color:#718096;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.db-cards .db-stat-icon{display:grid;width:48px;height:48px;padding:0;place-items:center;border-radius:14px;color:#fff;box-shadow:0 9px 20px rgba(15,23,42,.15)}
+.db-cards .db-stat-icon svg{width:22px;height:22px;stroke-width:2}
+.db-cards .db-stat:nth-child(1) .db-stat-icon{background:linear-gradient(135deg,#2bb8ea,#4f8ff1);box-shadow:0 9px 20px rgba(45,159,232,.28)}
+.db-cards .db-stat:nth-child(2) .db-stat-icon{background:linear-gradient(135deg,#3bd08e,#27bd7a);box-shadow:0 9px 20px rgba(39,185,129,.28)}
+.db-cards .db-stat:nth-child(3) .db-stat-icon{background:linear-gradient(135deg,#7c73f1,#684fd9);box-shadow:0 9px 20px rgba(104,79,217,.28)}
+.db-cards .db-stat:nth-child(4) .db-stat-icon{background:linear-gradient(135deg,#ffb22f,#ff8a1f);box-shadow:0 9px 20px rgba(245,145,24,.3)}
+.db-cards .db-stat>strong{margin:-17px 0 9px;padding-right:54px;font-size:30px;font-weight:750;line-height:1.05;letter-spacing:-.035em;white-space:nowrap}
+.db-cards .db-stat-footer{color:#8793a8;font-size:10px;line-height:1.35}
+.db-cards .db-stat-footer svg{width:14px;height:14px}
+:root[data-admin-theme="dark"] .db-cards .db-stat{border-color:#3d424d;background:#24272e;color:#f1f5f9;box-shadow:0 8px 22px rgba(0,0,0,.24)}
+:root[data-admin-theme="dark"] .db-cards .db-stat:hover{border-color:#596170;box-shadow:0 13px 30px rgba(0,0,0,.34)}
+:root[data-admin-theme="dark"] .db-cards .db-stat-top,:root[data-admin-theme="dark"] .db-cards .db-stat-footer{color:#9fb0c5}
+:root[data-admin-theme="dark"] .db-welcome-icon{box-shadow:0 9px 24px rgba(43,184,234,.2)}
+@media(max-width:480px){.db-cards .db-stat{min-height:116px;padding:15px}.db-cards .db-stat-icon{width:42px;height:42px}.db-cards .db-stat>strong{margin:-12px 0 8px;font-size:25px}}

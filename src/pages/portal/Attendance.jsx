@@ -307,18 +307,23 @@ function Attendance() {
     <div className="-mt-1">
       {pageError && <p role="alert" className="mb-3 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-700">{pageError}</p>}
       <header className="flex flex-col justify-between gap-3 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm sm:flex-row sm:items-center">
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-gold-dark">
-            Attendance & Leave
-          </p>
-          <h1 className="mt-1 font-heading text-2xl font-bold text-brand-navy">
-            {activeTab === "attendance" ? "My Attendance" : "My Leave Requests"}
-          </h1>
-          <p className="mt-1 text-sm text-slate-500">
-            {activeTab === "attendance"
-              ? `${enrollment?.batchName || "Batch not assigned"} · ${formatMonth(selectedMonth)}`
-              : "Request leave and track approval status"}
-          </p>
+        <div className="flex items-center gap-3">
+          <span className="portal-attendance-heading-icon">
+            <PortalIcon name="attendance" className="h-6 w-6" />
+          </span>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-gold-dark">
+              Attendance & Leave
+            </p>
+            <h1 className="mt-1 font-heading text-2xl font-bold text-brand-navy">
+              {activeTab === "attendance" ? "My Attendance" : "My Leave Requests"}
+            </h1>
+            <p className="mt-1 text-sm text-slate-500">
+              {activeTab === "attendance"
+                ? `${enrollment?.batchName || "Batch not assigned"} · ${formatMonth(selectedMonth)}`
+                : "Request leave and track approval status"}
+            </p>
+          </div>
         </div>
         {activeTab === "leave" && (
           <button
@@ -356,22 +361,20 @@ function Attendance() {
       </nav>
       {activeTab === "attendance" ? (
         <>
-          <section className="mt-3 grid grid-cols-2 gap-2.5 lg:grid-cols-5">
+          <section className="portal-attendance-metrics mt-3" aria-label="Attendance summary">
             {[
-              ["Attendance", `${attendanceRate}%`, "border-t-blue-700"],
-              ["Classes Held", monthRecords.length, "border-t-emerald-600"],
-              ["Present", present, "border-t-sky-700"],
-              ["Absent", absent, "border-t-rose-600"],
-              ["Leave Taken", leaveSessions, "border-t-violet-600"],
-            ].map(([label, value, tone]) => (
-              <article
-                key={label}
-                className={`rounded-xl border border-slate-200 border-t-[3px] bg-white px-4 py-3 shadow-sm ${tone}`}
-              >
-                <p className="text-[10px] text-slate-500">{label}</p>
-                <strong className="mt-1 block font-heading text-xl text-brand-navy">
-                  {value}
-                </strong>
+              ["Attendance", `${attendanceRate}%`, "attendance", "portal-metric-sky"],
+              ["Classes Held", monthRecords.length, "schedule", "portal-metric-violet"],
+              ["Present", present, "check", "portal-metric-emerald"],
+              ["Absent", absent, "close", "portal-metric-rose"],
+              ["Leave Taken", leaveSessions, "clock", "portal-metric-orange"],
+            ].map(([label, value, icon, tone]) => (
+              <article key={label} className={`portal-attendance-metric ${tone}`}>
+                <div>
+                  <p>{label}</p>
+                  <strong>{value}</strong>
+                </div>
+                <i><PortalIcon name={icon} className="h-5 w-5" /></i>
               </article>
             ))}
           </section>
@@ -578,21 +581,19 @@ function Attendance() {
         </>
       ) : (
         <>
-          <section className="mt-3 grid grid-cols-2 gap-2.5 lg:grid-cols-4">
+          <section className="portal-attendance-metrics portal-leave-metrics mt-3" aria-label="Leave request summary">
             {[
-              ["Total Requests", requests.length, "border-t-sky-600"],
-              ["Pending", leaveCounts.Pending, "border-t-amber-600"],
-              ["Approved", leaveCounts.Approved, "border-t-emerald-600"],
-              ["Rejected", leaveCounts.Rejected, "border-t-rose-600"],
-            ].map(([label, value, tone]) => (
-              <article
-                key={label}
-                className={`rounded-xl border border-slate-200 border-t-[3px] bg-white px-4 py-3 shadow-sm ${tone}`}
-              >
-                <p className="text-[10px] text-slate-500">{label}</p>
-                <strong className="mt-1 block font-heading text-xl text-brand-navy">
-                  {value}
-                </strong>
+              ["Total Requests", requests.length, "assignments", "portal-metric-sky"],
+              ["Pending", leaveCounts.Pending, "clock", "portal-metric-orange"],
+              ["Approved", leaveCounts.Approved, "check", "portal-metric-emerald"],
+              ["Rejected", leaveCounts.Rejected, "close", "portal-metric-rose"],
+            ].map(([label, value, icon, tone]) => (
+              <article key={label} className={`portal-attendance-metric ${tone}`}>
+                <div>
+                  <p>{label}</p>
+                  <strong>{value}</strong>
+                </div>
+                <i><PortalIcon name={icon} className="h-5 w-5" /></i>
               </article>
             ))}
           </section>

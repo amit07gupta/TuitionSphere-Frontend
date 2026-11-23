@@ -556,7 +556,7 @@ function CoursesBatches() {
         {summary.map(([label, value, style, icon]) => (
           <article
             key={label}
-            className={`flex items-center justify-between rounded-xl border px-4 py-3 shadow-sm ${style}`}
+            className={`batch-summary-card flex items-center justify-between rounded-xl border px-4 py-3 shadow-sm ${style}`}
           >
             <span>
               <span className="block text-[10px] font-semibold opacity-75">

@@ -24,7 +24,18 @@ export default function TutorForm({ title, form, setForm, boards, grades, subjec
 
   const options = (items, field, label) => <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">{items.map((item) => { const value = item.id || item, text = label ? label(item) : item; return <label key={value} className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-xs ${form[field].includes(value) ? "border-blue-400 bg-blue-50 text-blue-800" : "border-slate-200 text-slate-500"}`}><input type="checkbox" checked={form[field].includes(value)} onChange={(event) => changeAcademic(field, value, event.target.checked)} /><span className="truncate">{text}</span></label>; })}</div>;
 
-  const fields = (items) => items.map(([label, field, type]) => <label key={field} className="text-xs font-semibold">{label}<input required={!["qualification","experience","availability"].includes(field)} type={type} min={type === "number" ? "0" :       <SearchableSelection label="Subjects" items={eligibleSubjects} selected={form.subjectIds} onToggle={(id, checked) => changeAcademic("subjectIds", id, checked)} getLabel={item => item.name + " · " + (boards.find(b => b.id === item.boardId)?.code || "")} emptyText="Select matching Board, Grade and, where applicable, Stream." />} max={type === "number" ? "60" : undefined} value={form[field]} placeholder={field === "availability" ? "e.g. Weekday evenings" : undefined} onChange={event => setForm({ ...form, [field]: event.target.value })} className={fieldClass} /></label>);
+  const fields = (items) => items.map(([label, field, type]) => {
+    const isPhone = field === "phone";
+    const isName = field === "name";
+    const handleChange = (event) => {
+      let value = event.target.value;
+      if (isPhone) value = value.replace(/\D/g, "").slice(0, 10);
+      if (isName) value = value.replace(/[^\p{L}\s'-]/gu, "");
+      setForm({ ...form, [field]: value });
+    };
+
+    return <label key={field} className="text-xs font-semibold">{label}<input required={!['qualification','experience','availability'].includes(field)} type={type} min={type === "number" ? "0" : undefined} max={type === "number" ? "60" : undefined} maxLength={isPhone ? 10 : undefined} inputMode={isPhone ? "numeric" : undefined} pattern={isPhone ? "[0-9]{10}" : undefined} title={isPhone ? "Enter exactly 10 digits" : isName ? "Use letters, spaces, apostrophes or hyphens only" : undefined} value={form[field]} placeholder={field === "availability" ? "e.g. Weekday evenings" : undefined} onChange={handleChange} className={fieldClass} /></label>;
+  });
   return createPortal(<div className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-slate-950/60 p-0 sm:items-center sm:p-6"><form ref={modalRef} onSubmit={onSubmit} role="dialog" aria-modal="true" aria-labelledby="tutor-form-title" tabIndex="-1" className="tutor-form flex h-[100dvh] w-full max-w-4xl flex-col overflow-hidden bg-white shadow-2xl outline-none sm:h-auto sm:max-h-[calc(100dvh-3rem)] sm:rounded-2xl">
     <header className="flex shrink-0 items-center justify-between border-b px-4 py-4 sm:px-6"><span className="tutor-heading-icon"><AdminMetricIcon name="tutor" /></span><div className="mr-auto ml-3"><p className="text-[10px] font-bold uppercase tracking-[.18em] text-amber-600">Academic Team</p><h2 id="tutor-form-title" className="font-heading text-xl font-bold text-brand-navy">{title}</h2></div><button type="button" onClick={onClose} className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100" aria-label="Close tutor form">✕</button></header>
     <div className="min-h-0 flex-1 overflow-y-auto px-4 py-5 sm:px-6"><fieldset disabled={isSaving} className="grid gap-4 sm:grid-cols-2">

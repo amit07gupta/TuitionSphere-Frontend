@@ -6,12 +6,19 @@ const headerNotifications = [
   ["Follow-up reminder", "Check pending requests and inquiries."],
 ];
 
+const iconTone = {
+  assignments: "from-violet-500 to-indigo-600 shadow-violet-500/25",
+  bell: "from-orange-400 to-rose-500 shadow-orange-500/25",
+  paid: "from-emerald-400 to-teal-600 shadow-emerald-500/25",
+  students: "from-sky-400 to-blue-600 shadow-sky-500/25",
+};
+
 function AdminPageHeader({ eyebrow, title, description, icon, meta }) {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   return (
     <header className="relative flex flex-col justify-between gap-3 lg:flex-row lg:items-center">
       <div className="flex items-start gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-navy text-brand-gold shadow-sm">
+        <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-lg ${iconTone[icon] || "from-indigo-500 to-violet-600 shadow-indigo-500/25"}`}>
           <AdminMetricIcon name={icon} className="h-5 w-5" />
         </span>
         <div>

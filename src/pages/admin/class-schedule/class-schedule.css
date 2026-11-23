@@ -7,8 +7,37 @@
 .schedule-page .schedule-filters input::placeholder{color:#64748b!important;-webkit-text-fill-color:#64748b!important;opacity:1}
 .schedule-page .schedule-filters>button{height:40px;padding:0 8px;color:#334155;font-size:10px;font-weight:700;text-decoration:underline}
 .schedule-page .board-directory table thead th{background:#f6f7fb!important;color:#334155!important}
+.schedule-summary-card .tutor-heading-icon{width:36px;height:36px}.schedule-summary-card:nth-child(1) .tutor-heading-icon{background:linear-gradient(135deg,#2bb8ea,#4f8ff1);box-shadow:0 7px 16px rgba(45,159,232,.28)}.schedule-summary-card:nth-child(2) .tutor-heading-icon{background:linear-gradient(135deg,#7c73f1,#684fd9);box-shadow:0 7px 16px rgba(104,79,217,.28)}.schedule-summary-card:nth-child(3) .tutor-heading-icon{background:linear-gradient(135deg,#3bd08e,#27bd7a);box-shadow:0 7px 16px rgba(39,185,129,.28)}.schedule-summary-card:nth-child(4) .tutor-heading-icon{background:linear-gradient(135deg,#ffb22f,#ff8a1f);box-shadow:0 7px 16px rgba(245,145,24,.3)}
+.schedule-page>.tutor-page-heading .tutor-heading-icon{background:linear-gradient(135deg,#2bb8ea,#4f8ff1);box-shadow:0 9px 24px rgba(45,159,232,.28)}
 :root[data-admin-theme="dark"] .schedule-page .schedule-filters{background:var(--admin-surface-soft)!important}
 :root[data-admin-theme="dark"] .schedule-page .schedule-filters input,:root[data-admin-theme="dark"] .schedule-page .schedule-filters select{color:var(--admin-heading)!important;background-color:var(--admin-input)!important;border-color:var(--admin-border)!important;-webkit-text-fill-color:var(--admin-heading)!important}
 :root[data-admin-theme="dark"] .schedule-page .schedule-filters select:hover,:root[data-admin-theme="dark"] .schedule-page .schedule-filters input:focus,:root[data-admin-theme="dark"] .schedule-page .schedule-filters select:focus{background-color:var(--admin-input)!important}
 :root[data-admin-theme="dark"] .schedule-page .board-directory table thead th{color:#f8fafc!important;background:#303641!important;border-color:#405574!important}
 @media(max-width:700px){.schedule-page .schedule-filters label{flex-basis:100%}.schedule-page .schedule-filters select{min-width:44%}}
+
+/* Tailwind-style calendar used by the Add Class form. */
+.schedule-date-popper{z-index:140!important}
+.schedule-date-calendar.react-datepicker{overflow:hidden;border:1px solid #e2e8f0;border-radius:14px;background:#fff;color:#0f172a;font-family:inherit;box-shadow:0 20px 45px rgba(15,23,42,.18)}
+.schedule-date-calendar .react-datepicker__header{border-bottom:1px solid #e2e8f0;background:#f8fafc;padding:14px 10px 10px}
+.schedule-date-calendar .react-datepicker__current-month{display:none}
+.schedule-date-calendar .react-datepicker__header__dropdown{display:flex;justify-content:center;gap:8px;margin-bottom:10px}
+.schedule-date-calendar .react-datepicker__month-select,.schedule-date-calendar .react-datepicker__year-select{height:34px;border:1px solid #cbd5e1;border-radius:9px;background-color:#fff;padding:0 30px 0 10px;color:#334155;font-size:12px;font-weight:700;outline:none}
+.schedule-date-calendar .react-datepicker__day-name{color:#64748b;font-size:11px;font-weight:700}
+.schedule-date-calendar .react-datepicker__month{margin:10px}
+.schedule-date-calendar .react-datepicker__day{display:inline-flex;height:32px;width:32px;align-items:center;justify-content:center;border-radius:9px;color:#334155;font-size:12px;font-weight:600;line-height:32px}
+.schedule-date-calendar .react-datepicker__day:hover{background:#eff6ff;color:#1d4ed8}
+.schedule-date-calendar .react-datepicker__day--selected,.schedule-date-calendar .react-datepicker__day--keyboard-selected{background:#2563eb!important;color:#fff!important}
+.schedule-date-calendar .react-datepicker__day--today{box-shadow:inset 0 0 0 1.5px #60a5fa;color:#1d4ed8;font-weight:800}
+.schedule-date-calendar .react-datepicker__day--outside-month{color:#cbd5e1}
+.schedule-date-calendar .react-datepicker__day--disabled{cursor:not-allowed;color:#cbd5e1;text-decoration:line-through}
+.schedule-date-calendar .react-datepicker__navigation{top:15px;height:30px;width:30px;border-radius:8px}
+.schedule-date-calendar .react-datepicker__navigation:hover{background:#e2e8f0}
+:root[data-admin-theme="dark"] .schedule-date-calendar.react-datepicker{border-color:#4b5563;background:#24272e;color:#f8fafc;box-shadow:0 22px 52px rgba(0,0,0,.45)}
+:root[data-admin-theme="dark"] .schedule-date-calendar .react-datepicker__header{border-color:#4b5563;background:#303641}
+:root[data-admin-theme="dark"] .schedule-date-calendar .react-datepicker__month-select,:root[data-admin-theme="dark"] .schedule-date-calendar .react-datepicker__year-select{border-color:#596170;background:#1d2026;color:#f1f5f9}
+:root[data-admin-theme="dark"] .schedule-date-calendar .react-datepicker__day-name{color:#cbd5e1}
+:root[data-admin-theme="dark"] .schedule-date-calendar .react-datepicker__day{color:#e2e8f0}
+:root[data-admin-theme="dark"] .schedule-date-calendar .react-datepicker__day:hover{background:#334155;color:#bfdbfe}
+:root[data-admin-theme="dark"] .schedule-date-calendar .react-datepicker__day--outside-month,:root[data-admin-theme="dark"] .schedule-date-calendar .react-datepicker__day--disabled{color:#64748b}
+:root[data-admin-theme="dark"] .schedule-date-calendar .react-datepicker__day--today{color:#93c5fd}
+:root[data-admin-theme="dark"] .schedule-date-calendar .react-datepicker__navigation:hover{background:#475569}

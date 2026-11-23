@@ -224,7 +224,7 @@ export default function GradeList() {
         aria-label="Grade summary"
       >
         {[
-          ["All grades", "all", "programs", "board-metric-indigo"],
+          ["Total grades", "all", "programs", "board-metric-indigo"],
           ["Active", "Active", "resolved", "board-metric-emerald"],
           ["Inactive", "Inactive", "inactive", "board-metric-rose"],
         ].map(([label, status, icon, tone]) => (

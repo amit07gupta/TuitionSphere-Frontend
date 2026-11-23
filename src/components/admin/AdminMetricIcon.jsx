@@ -138,6 +138,19 @@ const iconPaths = {
       <path d="M4 21a8 8 0 0 1 16 0M18 4l2-2M6 4 4 2" />
     </>
   ),
+  attendance: (
+    <>
+      <circle cx="9" cy="7" r="4" />
+      <path d="M2 21a7 7 0 0 1 14 0" />
+      <path d="m16 13 2.5 2.5L22 12" />
+    </>
+  ),
+  assignments: (
+    <>
+      <rect x="5" y="4" width="14" height="17" rx="2" />
+      <path d="M9 4.5V3h6v1.5M9 9h6M9 13h6M9 17h4" />
+    </>
+  ),
 };
 
 function AdminMetricIcon({ name, className = "h-5 w-5" }) {

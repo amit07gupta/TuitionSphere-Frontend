@@ -155,7 +155,7 @@ export default function SubjectList() {
         aria-label="Subject summary"
       >
         {[
-          ["All subjects", "all", "book", "board-metric-indigo"],
+          ["Total subjects", "all", "book", "board-metric-indigo"],
           ["Active", "Active", "resolved", "board-metric-emerald"],
           ["Inactive", "Inactive", "inactive", "board-metric-rose"],
         ].map(([label, status, icon, tone]) => (

@@ -38,15 +38,20 @@ const toDateValue = (value) =>
   value
     ? `${value.getFullYear()}-${String(value.getMonth() + 1).padStart(2, "0")}-${String(value.getDate()).padStart(2, "0")}`
     : "";
+const earliestSessionDate = "2021-01-01";
 
 const sessionMetrics = [
-  ["All sessions", "all", "total", "session-metric-indigo"],
-  ["Active", "Active", "resolved", "session-metric-emerald"],
+  ["Total sessions", "all", "total", "session-metric-indigo"],
+  ["Active", "Active", "resolved", "session-metric-orange"],
   ["Upcoming", "Upcoming", "pending", "session-metric-sky"],
-  ["Completed", "Completed", "completedSession", "session-metric-violet"],
+  ["Completed", "Completed", "completedSession", "session-metric-emerald"],
 ];
 
 function CalendarField({ label, value, onChange, minDate }) {
+  const effectiveMinDate = minDate && minDate > earliestSessionDate
+    ? minDate
+    : earliestSessionDate;
+
   return (
     <label className="text-xs font-semibold text-slate-600">
       {label}
@@ -54,7 +59,7 @@ function CalendarField({ label, value, onChange, minDate }) {
         required
         selected={toDate(value)}
         onChange={(date) => onChange(toDateValue(date))}
-        minDate={toDate(minDate)}
+        minDate={toDate(effectiveMinDate)}
         dateFormat="dd/MM/yyyy"
         placeholderText="DD/MM/YYYY"
         showMonthDropdown

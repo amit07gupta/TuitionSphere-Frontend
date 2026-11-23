@@ -119,6 +119,8 @@ export default function TutorList() {
     }
   };
   const validate = (form) => {
+    if (!/^[\p{L}][\p{L} '-]+$/u.test(form.name.trim()))
+      return "Full name can only contain letters, spaces, apostrophes and hyphens.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       return "Enter a valid email address.";
     if (form.phone.replace(/\D/g, "").length !== 10)
@@ -199,7 +201,7 @@ export default function TutorList() {
         aria-label="Tutor summary"
       >
         {[
-          ["All tutors", "all", "tutor", "board-metric-indigo"],
+          ["Total tutors", "all", "tutor", "board-metric-indigo"],
           ["Active", "Active", "resolved", "board-metric-emerald"],
           ["Inactive", "Inactive", "inactive", "board-metric-rose"],
         ].map(([label, value, icon, tone]) => (
@@ -355,7 +357,7 @@ export default function TutorList() {
                 ].map((heading) => (
                   <th
                     key={heading}
-                    className={`border border-blue-300/20 px-4 py-3 ${heading === "Actions" ? "text-center" : ""}`}
+                    className={`border border-blue-300/20 px-4 py-3 ${heading === "Status" ? "tutor-status-cell text-center" : ""} ${heading === "Actions" ? "text-center" : ""}`}
                   >
                     {heading}
                   </th>
@@ -435,9 +437,9 @@ export default function TutorList() {
                         ))}
                       </div>
                     </td>
-                    <td className="border p-4">
+                    <td className="tutor-status-cell border p-4 text-center">
                       <span
-                        className={`rounded-full px-2.5 py-1 text-[9px] font-bold ${badge[tutor.status]}`}
+                        className={`inline-flex items-center justify-center whitespace-nowrap rounded-full px-2.5 py-1 text-[9px] font-bold ${badge[tutor.status]}`}
                       >
                         {tutor.status}
                       </span>

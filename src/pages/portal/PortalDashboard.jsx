@@ -87,41 +87,46 @@ function PortalDashboard() {
   const notices = allNotices.slice(0, 3);
   const pendingAssignments = (data.assignments?.assignments || []).filter((item) => !item.submission).length;
   const cards = [
-    [
-      "Upcoming Classes",
-      classes.length,
-      "schedule",
-      "/portal/schedule",
-      "bg-sky-50 border-sky-200",
-    ],
-    [
-      "Attendance",
-      data.attendance ? `${rate}%` : "—",
-      "attendance",
-      "/portal/attendance",
-      "bg-emerald-50 border-emerald-200",
-    ],
-    [
-      "Assignments",
-      data.assignments ? pendingAssignments : "—",
-      "assignments",
-      "/portal/assignments",
-      "bg-violet-50 border-violet-200",
-    ],
-    [
-      "Pending Fees",
-      data.fees ? pendingFees.length : "—",
-      "fees",
-      "/portal/fees",
-      "bg-rose-50 border-rose-200",
-    ],
-    [
-      "Active Updates",
-      data.notices ? allNotices.length : "—",
-      "notice",
-      "/portal/notices",
-      "bg-orange-50 border-orange-200",
-    ],
+    {
+      label: "Upcoming Classes",
+      value: classes.length,
+      icon: "schedule",
+      path: "/portal/schedule",
+      detail: "View class schedule",
+      tone: "portal-metric-sky",
+    },
+    {
+      label: "Attendance",
+      value: data.attendance ? `${rate}%` : "—",
+      icon: "attendance",
+      path: "/portal/attendance",
+      detail: "View attendance record",
+      tone: "portal-metric-emerald",
+    },
+    {
+      label: "Assignments",
+      value: data.assignments ? pendingAssignments : "—",
+      icon: "assignments",
+      path: "/portal/assignments",
+      detail: "Pending submissions",
+      tone: "portal-metric-violet",
+    },
+    {
+      label: "Pending Fees",
+      value: data.fees ? pendingFees.length : "—",
+      icon: "fees",
+      path: "/portal/fees",
+      detail: "View fee records",
+      tone: "portal-metric-rose",
+    },
+    {
+      label: "Active Updates",
+      value: data.notices ? allNotices.length : "—",
+      icon: "notice",
+      path: "/portal/notices",
+      detail: "View latest updates",
+      tone: "portal-metric-orange",
+    },
   ];
 
   return (
@@ -136,22 +141,21 @@ function PortalDashboard() {
         </h1>
 
       </section>
-      <section className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        {cards.map(([label, value, icon, path, tone]) => (
+      <section className="portal-dashboard-metrics mt-3" aria-label="Student dashboard summary">
+        {cards.map(({ label, value, icon, path, detail, tone }) => (
           <Link
             key={label}
             to={path}
-            className={`flex items-center justify-between rounded-xl border p-4 text-brand-navy no-underline shadow-sm ${tone}`}
+            className={`portal-dashboard-metric ${tone}`}
           >
-            <div>
-              <p className="text-[10px] font-semibold text-slate-500">
-                {label}
-              </p>
-              <strong className="mt-1 block font-heading text-2xl">
-                {value}
-              </strong>
+            <div className="portal-dashboard-metric-top">
+              <div>
+                <p>{label}</p>
+                <strong>{value}</strong>
+              </div>
+              <i><PortalIcon name={icon} className="h-5 w-5" /></i>
             </div>
-            <PortalIcon name={icon} className="h-6 w-6" />
+            <span>{detail}<PortalIcon name="arrow" className="h-4 w-4" /></span>
           </Link>
         ))}
       </section>

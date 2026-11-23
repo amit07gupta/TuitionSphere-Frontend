@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import PortalIcon from "../../components/portal/PortalIcon";
 import { fetchTutorSchedule } from "../../services/tutorScheduleApi";
+import "./dashboard.css";
 
 const pad = (value) => String(value).padStart(2, "0");
 const dateKey = (date) =>
@@ -150,13 +152,18 @@ function MySchedule() {
     <div className="space-y-5">
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-violet-600">
-              Teaching schedule
-            </p>
-            <h1 className="mt-2 font-heading text-2xl font-bold text-brand-navy sm:text-3xl">
-              My Schedule
-            </h1>
+          <div className="flex items-center gap-3">
+            <span className="tutor-page-heading-icon is-schedule">
+              <PortalIcon name="schedule" className="h-6 w-6" />
+            </span>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-violet-600">
+                Teaching schedule
+              </p>
+              <h1 className="mt-1 font-heading text-2xl font-bold text-brand-navy sm:text-3xl">
+                My Schedule
+              </h1>
+            </div>
           </div>
           <div className="w-fit rounded-2xl bg-violet-50 px-5 py-3">
             <p className="text-xs font-semibold text-violet-600">
@@ -168,30 +175,18 @@ function MySchedule() {
           </div>
         </div>
       </section>
-      <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <section className="tutor-dashboard-metrics" aria-label="Schedule summary">
         {[
-          [
-            "Assigned series",
-            tutorSchedule.length,
-            "border-sky-200 bg-sky-50 text-sky-700",
-          ],
-          [
-            "In selected view",
-            occurrences.length,
-            "border-violet-200 bg-violet-50 text-violet-700",
-          ],
-          [
-            "Completed",
-            completed,
-            "border-emerald-200 bg-emerald-50 text-emerald-700",
-          ],
-          ["Upcoming", upcoming, "border-amber-200 bg-amber-50 text-amber-700"],
-        ].map(([label, value, tone]) => (
-          <article key={label} className={`rounded-2xl border p-4 ${tone}`}>
-            <p className="text-xs font-semibold">{label}</p>
-            <strong className="mt-1 block text-2xl text-brand-navy">
-              {value}
-            </strong>
+          ["Assigned series", tutorSchedule.length, "schedule", "is-sky"],
+          ["In selected view", occurrences.length, "view", "is-violet"],
+          ["Completed", completed, "check", "is-emerald"],
+          ["Upcoming", upcoming, "clock", "is-orange"],
+        ].map(([label, value, icon, tone]) => (
+          <article key={label} className={`tutor-summary-card tutor-static-metric ${tone}`}>
+            <div className="tutor-summary-card-top">
+              <div><p>{label}</p><strong>{value}</strong></div>
+              <i><PortalIcon name={icon} className="h-5 w-5" /></i>
+            </div>
           </article>
         ))}
       </section>

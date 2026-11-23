@@ -155,7 +155,7 @@ function Inquiries() {
       )}
       <section className="board-metrics mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
         {[
-          ["All inquiries", "all", "total", "board-metric-indigo"],
+          ["Total inquiries", "all", "total", "board-metric-indigo"],
           [
             "New",
             "New",

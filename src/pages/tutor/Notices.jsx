@@ -8,6 +8,7 @@ import {
   fetchTutorUpdates,
   updateTutorUpdate,
 } from "../../services/tutorUpdateApi";
+import "./dashboard.css";
 
 const dateKey = (date = new Date()) =>
   `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
@@ -35,6 +36,7 @@ const priorityTone = {
 const fieldClass =
   "mt-1.5 h-11 w-full rounded-xl border border-orange-200 bg-orange-50 px-3 text-sm text-brand-navy outline-none focus:border-orange-400 focus:ring-4 focus:ring-orange-100";
 const parseDate = (value) => (value ? new Date(`${value}T00:00:00`) : null);
+const preventManualDateEntry = (event) => event.preventDefault();
 
 function TutorNotices() {
   const [notices, setNotices] = useState([]);
@@ -122,13 +124,18 @@ function TutorNotices() {
     <div className="space-y-5">
       <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-orange-600">
-              Batch communication
-            </p>
-            <h1 className="mt-2 font-heading text-2xl font-bold text-brand-navy sm:text-3xl">
-              Updates
-            </h1>
+          <div className="flex items-center gap-3">
+            <span className="tutor-page-heading-icon is-update">
+              <PortalIcon name="notice" className="h-6 w-6" />
+            </span>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-orange-600">
+                Batch communication
+              </p>
+              <h1 className="mt-1 font-heading text-2xl font-bold text-brand-navy sm:text-3xl">
+                Updates
+              </h1>
+            </div>
           </div>
           <button
             type="button"
@@ -161,16 +168,17 @@ function TutorNotices() {
           {!receivedNotices.length && <p className="rounded-xl border border-dashed border-blue-200 bg-white/70 p-5 text-center text-xs text-slate-500 lg:col-span-2">No active institute announcements.</p>}
         </div>
       </section>
-      <section className="grid gap-3 sm:grid-cols-3">
-        {["Published", "Draft", "Archived"].map((label) => (
-          <article
-            key={label}
-            className={`rounded-2xl p-4 ${statusTone[label]}`}
-          >
-            <p className="text-xs font-semibold">{label}</p>
-            <strong className="mt-1 block text-2xl text-brand-navy">
-              {owned.filter((item) => item.status === label).length}
-            </strong>
+      <section className="tutor-assignment-metrics" aria-label="Update summary">
+        {[
+          ["Published", "check", "is-emerald"],
+          ["Draft", "clock", "is-orange"],
+          ["Archived", "file", "is-violet"],
+        ].map(([label, icon, tone]) => (
+          <article key={label} className={`tutor-summary-card tutor-static-metric ${tone}`}>
+            <div className="tutor-summary-card-top">
+              <div><p>{label}</p><strong>{owned.filter((item) => item.status === label).length}</strong></div>
+              <i><PortalIcon name={icon} className="h-5 w-5" /></i>
+            </div>
           </article>
         ))}
       </section>
@@ -404,8 +412,24 @@ function TutorNotices() {
                     })
                   }
                   dateFormat="dd/MM/yyyy"
+                  placeholderText="DD/MM/YYYY"
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  yearDropdownItemNumber={8}
+                  scrollableYearDropdown
+                  autoComplete="off"
+                  inputMode="none"
+                  onKeyDown={preventManualDateEntry}
+                  onPaste={preventManualDateEntry}
+                  onDrop={preventManualDateEntry}
+                  shouldCloseOnSelect
                   wrapperClassName="w-full"
-                  className={fieldClass}
+                  className={`${fieldClass} cursor-pointer caret-transparent`}
+                  portalId="academic-session-datepicker-root"
+                  popperClassName="academic-session-datepicker-popper z-[120]"
+                  calendarClassName="academic-session-datepicker !font-sans"
+                  popperPlacement="bottom-start"
                 />
               </label>
               <label className="text-xs font-semibold">
@@ -418,8 +442,24 @@ function TutorNotices() {
                   }
                   isClearable
                   dateFormat="dd/MM/yyyy"
+                  placeholderText="DD/MM/YYYY"
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  yearDropdownItemNumber={8}
+                  scrollableYearDropdown
+                  autoComplete="off"
+                  inputMode="none"
+                  onKeyDown={preventManualDateEntry}
+                  onPaste={preventManualDateEntry}
+                  onDrop={preventManualDateEntry}
+                  shouldCloseOnSelect
                   wrapperClassName="w-full"
-                  className={fieldClass}
+                  className={`${fieldClass} cursor-pointer caret-transparent`}
+                  portalId="academic-session-datepicker-root"
+                  popperClassName="academic-session-datepicker-popper z-[120]"
+                  calendarClassName="academic-session-datepicker !font-sans"
+                  popperPlacement="bottom-start"
                 />
               </label>
               {error && (

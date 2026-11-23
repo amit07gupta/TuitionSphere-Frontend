@@ -213,14 +213,19 @@ function FeeRecords() {
 
   return (
     <div>
-      <header className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-gold-dark">
-            Finance & Receipts
-          </p>
-          <h1 className="mt-1 font-heading text-2xl font-bold text-brand-navy md:text-3xl">
-            Fee Records
-          </h1>
+      <header className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+        <div className="flex items-center gap-3">
+          <span className="portal-fee-heading-icon">
+            <PortalIcon name="fees" className="h-6 w-6" />
+          </span>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-gold-dark">
+              Finance & Receipts
+            </p>
+            <h1 className="mt-1 font-heading text-2xl font-bold text-brand-navy md:text-3xl">
+              Fee Records
+            </h1>
+          </div>
         </div>
         <span className="w-fit rounded-full border bg-white px-3 py-2 text-[10px] font-semibold text-slate-500">
           {records[0]?.batchName || (student ? "No invoices yet" : "Student account")}
@@ -245,40 +250,18 @@ function FeeRecords() {
 
       {loadError && <p role="alert" className="mt-3 rounded-xl border border-rose-200 bg-rose-50 p-4 text-xs font-semibold text-rose-700">{loadError}</p>}
 
-      <section className="mt-4 grid gap-3 sm:grid-cols-3">
+      <section className="portal-attendance-metrics portal-fee-metrics mt-4" aria-label="Fee summary">
         {[
-          [
-            "Total Fees",
-            total,
-            "border-sky-300 bg-sky-50 text-sky-900",
-            "fees",
-          ],
-          [
-            "Paid",
-            paid,
-            "border-emerald-300 bg-emerald-50 text-emerald-900",
-            "check",
-          ],
-          [
-            "Pending",
-            pending,
-            "border-amber-300 bg-amber-50 text-amber-900",
-            "clock",
-          ],
-        ].map(([label, value, style, icon]) => (
-          <article
-            key={label}
-            className={`flex items-center justify-between rounded-xl border border-l-4 px-4 py-3 shadow-sm ${style}`}
-          >
+          ["Total Fees", total, "fees", "portal-metric-sky"],
+          ["Paid", paid, "check", "portal-metric-emerald"],
+          ["Pending", pending, "clock", "portal-metric-orange"],
+        ].map(([label, value, icon, tone]) => (
+          <article key={label} className={`portal-attendance-metric ${tone}`}>
             <div>
-              <p className="text-[10px] font-semibold opacity-65">{label}</p>
-              <strong className="mt-1 block font-heading text-xl">
-                {money.format(value)}
-              </strong>
+              <p>{label}</p>
+              <strong>{money.format(value)}</strong>
             </div>
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/60">
-              <PortalIcon name={icon} className="h-4 w-4" />
-            </span>
+            <i><PortalIcon name={icon} className="h-5 w-5" /></i>
           </article>
         ))}
       </section>

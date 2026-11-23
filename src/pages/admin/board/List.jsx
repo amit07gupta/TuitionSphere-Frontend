@@ -11,7 +11,7 @@ import EditBoard from "./EditBoard";
 import "./board.css";
 
 const boardMetrics = [
-  ["All boards", "all", "educationBoard", "board-metric-indigo"],
+  ["Total boards", "all", "educationBoard", "board-metric-indigo"],
   ["Active", "Active", "resolved", "board-metric-emerald"],
   ["Inactive", "Inactive", "inactive", "board-metric-rose"],
 ];

@@ -12,6 +12,7 @@ import {
 } from "../../services/tutorAssignmentApi";
 import PortalIcon from "../../components/portal/PortalIcon";
 import AssignmentSubmissionsDrawer from "./AssignmentSubmissionsDrawer";
+import "./dashboard.css";
 
 const TYPES = [
   "application/pdf",
@@ -37,6 +38,7 @@ const emptyForm = () => ({
 });
 const dateKey = (date) =>
   `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+const preventManualDateEntry = (event) => event.preventDefault();
 
 function TutorAssignments() {
   const [items, setItems] = useState([]);
@@ -219,13 +221,18 @@ function TutorAssignments() {
   return (
     <div className="space-y-4">
       <header className="flex flex-col gap-3 rounded-3xl border bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-wider text-violet-600">
-            Academic work
-          </p>
-          <h1 className="mt-1 font-heading text-3xl font-bold text-brand-navy">
-            Assignments
-          </h1>
+        <div className="flex items-center gap-3">
+          <span className="tutor-page-heading-icon is-assignment">
+            <PortalIcon name="assignments" className="h-6 w-6" />
+          </span>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-violet-600">
+              Academic work
+            </p>
+            <h1 className="mt-1 font-heading text-3xl font-bold text-brand-navy">
+              Assignments
+            </h1>
+          </div>
         </div>
         <button
           onClick={openCreate}
@@ -235,33 +242,23 @@ function TutorAssignments() {
           + Create Assignment
         </button>
       </header>
-      <section className="grid gap-3 sm:grid-cols-3">
+      <section className="tutor-assignment-metrics" aria-label="Assignment summary">
         {[
-          [
-            "Published",
-            owned.filter((item) => item.status === "Published").length,
-          ],
-          [
-            "Submissions",
-            submissions.filter((entry) =>
+          ["Published", owned.filter((item) => item.status === "Published").length, "assignments", "is-violet"],
+          ["Submissions", submissions.filter((entry) =>
               owned.some((item) => item.id === entry.assignmentId),
-            ).length,
-          ],
-          [
-            "To Review",
-            submissions.filter(
+            ).length, "upload", "is-sky"],
+          ["To Review", submissions.filter(
               (entry) =>
                 entry.status === "Submitted" &&
                 owned.some((item) => item.id === entry.assignmentId),
-            ).length,
-          ],
-        ].map(([label, value]) => (
-          <article
-            key={label}
-            className="rounded-2xl border border-violet-200 bg-white p-4"
-          >
-            <p className="text-xs text-slate-500">{label}</p>
-            <strong className="text-2xl text-brand-navy">{value}</strong>
+            ).length, "clock", "is-orange"],
+        ].map(([label, value, icon, tone]) => (
+          <article key={label} className={`tutor-summary-card tutor-static-metric ${tone}`}>
+            <div className="tutor-summary-card-top">
+              <div><p>{label}</p><strong>{value}</strong></div>
+              <i><PortalIcon name={icon} className="h-5 w-5" /></i>
+            </div>
           </article>
         ))}
       </section>
@@ -471,11 +468,27 @@ function TutorAssignments() {
                   }
                   minDate={new Date()}
                   onChange={(date) =>
-                    setForm({ ...form, dueDate: dateKey(date) })
+                    setForm({ ...form, dueDate: date ? dateKey(date) : "" })
                   }
                   dateFormat="dd/MM/yyyy"
+                  placeholderText="DD/MM/YYYY"
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  yearDropdownItemNumber={8}
+                  scrollableYearDropdown
+                  autoComplete="off"
+                  inputMode="none"
+                  onKeyDown={preventManualDateEntry}
+                  onPaste={preventManualDateEntry}
+                  onDrop={preventManualDateEntry}
+                  shouldCloseOnSelect
                   wrapperClassName="w-full"
-                  className={field}
+                  className={`${field} cursor-pointer caret-transparent`}
+                  portalId="academic-session-datepicker-root"
+                  popperClassName="academic-session-datepicker-popper z-[130]"
+                  calendarClassName="academic-session-datepicker !font-sans"
+                  popperPlacement="bottom-start"
                 />
               </label>
               <label className="text-xs font-semibold">

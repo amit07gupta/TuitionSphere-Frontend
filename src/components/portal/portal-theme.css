@@ -1,5 +1,212 @@
 .portal-shell[data-portal-theme="light"] { color-scheme: light; }
 
+.portal-dashboard-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.portal-dashboard-metric {
+  --metric-color: #2d9fe8;
+  --metric-icon-start: #2bb8ea;
+  --metric-icon-end: #4f8ff1;
+  --metric-icon-shadow: rgba(45, 159, 232, .26);
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #dbe2eb;
+  border-left: 4px solid var(--metric-color);
+  border-radius: 16px;
+  padding: 15px 14px 12px;
+  color: #172642;
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(30, 41, 59, .07);
+  text-decoration: none;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.portal-dashboard-metric:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--metric-color) 45%, #dbe2eb);
+  box-shadow: 0 10px 24px rgba(30, 41, 59, .1);
+}
+
+.portal-dashboard-metric-top {
+  display: flex;
+  min-height: 54px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.portal-dashboard-metric p {
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .055em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.portal-dashboard-metric strong {
+  display: block;
+  margin-top: 5px;
+  color: #172642;
+  font-family: var(--font-heading, inherit);
+  font-size: 25px;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.portal-dashboard-metric i {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border-radius: 13px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--metric-icon-start), var(--metric-icon-end));
+  box-shadow: 0 8px 18px var(--metric-icon-shadow);
+}
+
+.portal-dashboard-metric > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 10px;
+  border-top: 1px solid color-mix(in srgb, var(--metric-color) 22%, #e2e8f0);
+  padding-top: 9px;
+  color: var(--metric-color);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.portal-metric-sky { --metric-color: #2d9fe8; --metric-icon-start: #2bb8ea; --metric-icon-end: #4f8ff1; --metric-icon-shadow: rgba(45,159,232,.28); }
+.portal-metric-emerald { --metric-color: #27b981; --metric-icon-start: #3bd08e; --metric-icon-end: #27bd7a; --metric-icon-shadow: rgba(39,185,129,.28); }
+.portal-metric-violet { --metric-color: #6d5ce7; --metric-icon-start: #8274f5; --metric-icon-end: #684fd9; --metric-icon-shadow: rgba(104,79,217,.28); }
+.portal-metric-rose { --metric-color: #e25570; --metric-icon-start: #fb7185; --metric-icon-end: #e94b69; --metric-icon-shadow: rgba(226,85,112,.28); }
+.portal-metric-orange { --metric-color: #f59e0b; --metric-icon-start: #ffb22f; --metric-icon-end: #ff8a1f; --metric-icon-shadow: rgba(245,145,24,.3); }
+
+.portal-attendance-heading-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  place-items: center;
+  border-radius: 14px;
+  color: #fff;
+  background: linear-gradient(135deg, #3bd08e, #27bd7a);
+  box-shadow: 0 9px 20px rgba(39, 185, 129, .28);
+}
+
+.portal-fee-heading-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  place-items: center;
+  border-radius: 14px;
+  color: #fff;
+  background: linear-gradient(135deg, #fb7185, #e94b69);
+  box-shadow: 0 9px 20px rgba(226, 85, 112, .28);
+}
+
+.portal-attendance-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.portal-attendance-metrics.portal-leave-metrics {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.portal-attendance-metrics.portal-fee-metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.portal-attendance-metric {
+  --metric-color: #2d9fe8;
+  --metric-icon-start: #2bb8ea;
+  --metric-icon-end: #4f8ff1;
+  --metric-icon-shadow: rgba(45,159,232,.28);
+  display: flex;
+  min-width: 0;
+  min-height: 82px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid #dbe2eb;
+  border-left: 4px solid var(--metric-color);
+  border-radius: 14px;
+  padding: 13px 14px;
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(30, 41, 59, .07);
+}
+
+.portal-attendance-metric p {
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .055em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.portal-attendance-metric strong {
+  display: block;
+  margin-top: 5px;
+  color: #172642;
+  font-family: var(--font-heading, inherit);
+  font-size: 23px;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.portal-attendance-metric i {
+  display: grid;
+  width: 39px;
+  height: 39px;
+  flex: 0 0 39px;
+  place-items: center;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--metric-icon-start), var(--metric-icon-end));
+  box-shadow: 0 7px 16px var(--metric-icon-shadow);
+}
+
+/* Keep each attendance card's icon and accent distinct from the base defaults. */
+.portal-attendance-metric.portal-metric-sky { --metric-color: #2d9fe8; --metric-icon-start: #2bb8ea; --metric-icon-end: #4f8ff1; --metric-icon-shadow: rgba(45,159,232,.28); }
+.portal-attendance-metric.portal-metric-emerald { --metric-color: #27b981; --metric-icon-start: #3bd08e; --metric-icon-end: #27bd7a; --metric-icon-shadow: rgba(39,185,129,.28); }
+.portal-attendance-metric.portal-metric-violet { --metric-color: #6d5ce7; --metric-icon-start: #8274f5; --metric-icon-end: #684fd9; --metric-icon-shadow: rgba(104,79,217,.28); }
+.portal-attendance-metric.portal-metric-rose { --metric-color: #e25570; --metric-icon-start: #fb7185; --metric-icon-end: #e94b69; --metric-icon-shadow: rgba(226,85,112,.28); }
+.portal-attendance-metric.portal-metric-orange { --metric-color: #f59e0b; --metric-icon-start: #ffb22f; --metric-icon-end: #ff8a1f; --metric-icon-shadow: rgba(245,145,24,.3); }
+
+@media (max-width: 1279px) {
+  .portal-dashboard-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .portal-attendance-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+  .portal-dashboard-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .portal-attendance-metrics,
+  .portal-attendance-metrics.portal-leave-metrics,
+  .portal-attendance-metrics.portal-fee-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+  .portal-dashboard-metrics { grid-template-columns: 1fr; }
+  .portal-attendance-metrics,
+  .portal-attendance-metrics.portal-leave-metrics,
+  .portal-attendance-metrics.portal-fee-metrics { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portal-dashboard-metric { transition: none; }
+  .portal-dashboard-metric:hover { transform: none; }
+}
+
 .portal-shell[data-portal-theme="dark"] {
   color-scheme: dark;
   --portal-surface: #202734;
@@ -11,6 +218,39 @@
   background: #141c28 !important;
   color: var(--portal-text) !important;
 }
+
+.portal-shell[data-portal-theme="dark"] .portal-dashboard-metric {
+  color: #f1f5f9;
+  border-color: #3d4655;
+  border-left-color: var(--metric-color);
+  background: #242a34;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .24);
+}
+
+.portal-shell[data-portal-theme="dark"] .portal-dashboard-metric:hover {
+  border-color: var(--metric-color);
+}
+
+.portal-shell[data-portal-theme="dark"] .portal-dashboard-metric p { color: #aebdd0; }
+.portal-shell[data-portal-theme="dark"] .portal-dashboard-metric strong { color: #f8fafc; }
+.portal-shell[data-portal-theme="dark"] .portal-dashboard-metric i { border: 1px solid rgba(255,255,255,.14); }
+
+.portal-shell[data-portal-theme="dark"] .portal-attendance-heading-icon,
+.portal-shell[data-portal-theme="dark"] .portal-fee-heading-icon,
+.portal-shell[data-portal-theme="dark"] .portal-attendance-metric i {
+  border: 1px solid rgba(255,255,255,.14);
+  filter: saturate(.92) brightness(.94);
+}
+
+.portal-shell[data-portal-theme="dark"] .portal-attendance-metric {
+  border-color: #3d4655;
+  border-left-color: var(--metric-color);
+  background: #242a34;
+  box-shadow: 0 6px 18px rgba(0,0,0,.24);
+}
+
+.portal-shell[data-portal-theme="dark"] .portal-attendance-metric p { color: #aebdd0; }
+.portal-shell[data-portal-theme="dark"] .portal-attendance-metric strong { color: #f8fafc; }
 
 .portal-shell[data-portal-theme="dark"] > aside,
 .portal-shell[data-portal-theme="dark"] [class~="bg-white"],

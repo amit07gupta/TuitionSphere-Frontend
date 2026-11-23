@@ -375,7 +375,7 @@ function LeadsAdmissions() {
       )}
       <section className="mt-4 grid grid-cols-2 gap-3 xl:grid-cols-4">
         {[
-          ["All Requests", "all", "bg-slate-50 border-slate-200"],
+          ["Total Requests", "all", "bg-slate-50 border-slate-200"],
           ["New", "request", "bg-violet-50 border-violet-200"],
           ["Confirmed", "confirmed", "bg-amber-50 border-amber-200"],
           [

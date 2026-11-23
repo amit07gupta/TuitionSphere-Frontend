@@ -170,12 +170,12 @@ function DemoSetup() {
   };
 
   const updateSlot = (id, name, value) =>
-    update(
-      "timeSlots",
-      form.timeSlots.map((slot) =>
+    setForm((current) => ({
+      ...current,
+      timeSlots: current.timeSlots.map((slot) =>
         slot.id === id ? { ...slot, [name]: value } : slot,
       ),
-    );
+    }));
   const addSlot = () => {
     const nextNumber =
       form.timeSlots.reduce(

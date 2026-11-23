@@ -136,11 +136,16 @@ export default function Dashboard() {
   return (
     <div className="db-shell">
       <header className="db-header">
-        <div>
-          <p className="db-eyebrow">TUITIONSPHERE / ADMIN WORKSPACE</p>
-          <h1>
-            Welcome, Admin<span>.</span>
-          </h1>
+        <div className="db-welcome">
+          <span className="db-welcome-icon" aria-hidden="true">
+            <Icon kind="grid" />
+          </span>
+          <div>
+            <p className="db-eyebrow">TUITIONSPHERE / ADMIN WORKSPACE</p>
+            <h1>
+              Welcome, Admin<span>.</span>
+            </h1>
+          </div>
         </div>
         <div className="db-header-actions">
           <select
@@ -194,10 +199,10 @@ export default function Dashboard() {
         </div>
       )}
       <section className="db-cards" aria-label="Institute overview">
-        {cards.map(([label, number, detail, path, icon], index) => (
+        {cards.map(([label, number, detail, path, icon]) => (
           <Link
             to={`/admin/${path}`}
-            className={`db-stat ${index === 2 ? "db-stat-featured" : ""}`}
+            className="db-stat"
             key={label}
           >
             <div className="db-stat-top">

@@ -20,3 +20,5 @@
 :root[data-admin-theme="dark"] .demo-form-footer{background:#2b2f38!important;border-color:#3d424d!important}
 :root[data-admin-theme="dark"] .demo-form-cancel{background:#1d2026!important;color:#dbe5f2!important;border-color:#596170!important}
 :root[data-admin-theme="dark"] .demo-form-save{background:#172642!important;color:#fff!important}
+.demo-metrics article .tutor-heading-icon{width:36px;height:36px}.demo-metrics article:nth-child(1) .tutor-heading-icon{background:linear-gradient(135deg,#4f75ee,#6d52e9);box-shadow:0 7px 16px rgba(83,73,218,.28)}.demo-metrics article:nth-child(2) .tutor-heading-icon{background:linear-gradient(135deg,#3bd08e,#27bd7a);box-shadow:0 7px 16px rgba(39,185,129,.28)}.demo-metrics article:nth-child(3) .tutor-heading-icon{background:linear-gradient(135deg,#fb7185,#e94b69);box-shadow:0 7px 16px rgba(226,85,112,.28)}.demo-metrics article:nth-child(4) .tutor-heading-icon{background:linear-gradient(135deg,#ffb22f,#ff8a1f);box-shadow:0 7px 16px rgba(245,145,24,.3)}
+.demo-page>.tutor-page-heading .tutor-heading-icon{background:linear-gradient(135deg,#ffb22f,#f07a22);box-shadow:0 9px 24px rgba(240,122,34,.3)}
